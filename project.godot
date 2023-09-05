@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="GBJam11"
-run/main_scene="res://scenes/node_2d.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -27,4 +27,5 @@ project/assembly_name="GBJam11"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"

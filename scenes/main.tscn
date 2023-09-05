@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://fd12bwy31bip"]
+
+[ext_resource type="Texture2D" uid="uid://ctsnlqss2agjm" path="res://assets/gbjamlogo.png" id="1_d8da6"]
+[ext_resource type="Shader" path="res://shaders/palette.gdshader" id="1_tfrcq"]
+[ext_resource type="Texture2D" uid="uid://dj8qxksvrubd3" path="res://assets/palettes/cool.png" id="3_gp1iu"]
+[ext_resource type="Texture2D" uid="uid://bxur5hjh2bs2v" path="res://assets/white.png" id="4_i28ch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyrya"]
+shader = ExtResource("1_tfrcq")
+shader_parameter/palette = ExtResource("3_gp1iu")
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_d8da6")
+centered = false
+
+[node name="Palette" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_yyrya")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_i28ch")
