@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://fd12bwy31bip"]
+[gd_scene load_steps=7 format=3 uid="uid://cxw2twxsdn78a"]
 
-[ext_resource type="Texture2D" uid="uid://ctsnlqss2agjm" path="res://assets/gbjamlogo.png" id="1_d8da6"]
+[ext_resource type="PackedScene" uid="uid://k2rtde3480sq" path="res://scenes/game.tscn" id="1_87wi1"]
 [ext_resource type="Shader" path="res://shaders/palette.gdshader" id="3_c4elu"]
-[ext_resource type="Texture2D" uid="uid://dj8qxksvrubd3" path="res://assets/palettes/cool.png" id="3_gqxx0"]
+[ext_resource type="Texture2D" uid="uid://njhptb5pbdxi" path="res://assets/palettes/lcd.png" id="3_k25xq"]
 [ext_resource type="Script" path="res://scripts/Palette.cs" id="4_t2b3b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c2idx"]
 shader = ExtResource("3_c4elu")
-shader_parameter/palette = ExtResource("3_gqxx0")
+shader_parameter/palette = ExtResource("3_k25xq")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yh0so"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xi15g"]
 viewport_path = NodePath("GBScreen")
 
 [node name="Main" type="AspectRatioContainer"]
@@ -21,17 +21,13 @@ grow_vertical = 2
 ratio = 1.1111
 
 [node name="GBScreen" type="SubViewport" parent="."]
-transparent_bg = true
-handle_input_locally = false
 size = Vector2i(160, 144)
 render_target_update_mode = 4
 
-[node name="GBJamLogo" type="Sprite2D" parent="GBScreen"]
-texture = ExtResource("1_d8da6")
-centered = false
+[node name="UI" parent="GBScreen" instance=ExtResource("1_87wi1")]
 
 [node name="Palette" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_c2idx")
 layout_mode = 2
-texture = SubResource("ViewportTexture_yh0so")
+texture = SubResource("ViewportTexture_xi15g")
 script = ExtResource("4_t2b3b")

@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dmkcxaefk848f"]
+
+[ext_resource type="FontFile" uid="uid://b8bbjbsp8hxhi" path="res://assets/fonts/Pixie.woff2" id="1_xyd4d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egj2p"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 1
+border_color = Color(0.66, 0.66, 0.66, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_detail = 4
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_xyd4d")
+default_font_size = 8
+HBoxContainer/constants/separation = 1
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_egj2p")
+TextEdit/colors/background_color = Color(0, 0, 0, 1)
+VBoxContainer/constants/separation = 1

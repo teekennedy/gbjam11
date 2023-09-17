@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://k2rtde3480sq"]
+
+[ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
+[ext_resource type="Script" path="res://scripts/GBButton.cs" id="2_6188v"]
+[ext_resource type="Texture2D" uid="uid://cfpbk5ga06q48" path="res://ui/focused.png" id="2_m5ctc"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ianr6")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Choice" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+
+[node name="ChoicePrompt" type="RichTextLabel" parent="MenuPanel/Choice"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "What will you do?"
+
+[node name="ActionsContainer" type="HBoxContainer" parent="MenuPanel/Choice"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuPanel/Choice/ActionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsButton" type="Button" parent="MenuPanel/Choice/ActionsContainer/CenterContainer"]
+layout_mode = 2
+text = "Stats"
+icon = ExtResource("2_m5ctc")
+script = ExtResource("2_6188v")
+
+[node name="CenterContainer2" type="CenterContainer" parent="MenuPanel/Choice/ActionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RestButton" type="Button" parent="MenuPanel/Choice/ActionsContainer/CenterContainer2"]
+layout_mode = 2
+text = "Rest"
+script = ExtResource("2_6188v")
+
+[node name="CenterContainer3" type="CenterContainer" parent="MenuPanel/Choice/ActionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContinueButton" type="Button" parent="MenuPanel/Choice/ActionsContainer/CenterContainer3"]
+layout_mode = 2
+text = "Go"
+script = ExtResource("2_6188v")
