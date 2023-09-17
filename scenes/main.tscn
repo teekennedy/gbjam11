@@ -1,43 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://fd12bwy31bip"]
+[gd_scene load_steps=7 format=3 uid="uid://fd12bwy31bip"]
 
 [ext_resource type="Texture2D" uid="uid://ctsnlqss2agjm" path="res://assets/gbjamlogo.png" id="1_d8da6"]
 [ext_resource type="Shader" path="res://shaders/palette.gdshader" id="3_c4elu"]
-[ext_resource type="Texture2D" uid="uid://kyk5ge7ec1tb" path="res://assets/palettes/warm.png" id="3_glamw"]
-[ext_resource type="Texture2D" uid="uid://bxur5hjh2bs2v" path="res://assets/white.png" id="4_i28ch"]
-[ext_resource type="Script" path="res://scripts/Palette.gd" id="5_ssfpt"]
-[ext_resource type="Texture2D" uid="uid://cm4s4tnexxq6y" path="res://assets/school.png" id="6_o5x48"]
+[ext_resource type="Texture2D" uid="uid://dj8qxksvrubd3" path="res://assets/palettes/cool.png" id="3_gqxx0"]
+[ext_resource type="Script" path="res://scripts/Palette.cs" id="4_t2b3b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c2idx"]
 shader = ExtResource("3_c4elu")
-shader_parameter/palette = ExtResource("3_glamw")
+shader_parameter/palette = ExtResource("3_gqxx0")
 
-[node name="Main" type="Control"]
-layout_mode = 3
+[sub_resource type="ViewportTexture" id="ViewportTexture_yh0so"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main" type="AspectRatioContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.1111
 
-[node name="GBJamLogo" type="Sprite2D" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(160, 144)
+render_target_update_mode = 4
+
+[node name="GBJamLogo" type="Sprite2D" parent="SubViewport"]
 texture = ExtResource("1_d8da6")
 centered = false
 
-[node name="School" type="Sprite2D" parent="."]
-position = Vector2(80, 72)
-texture = ExtResource("6_o5x48")
-
 [node name="Palette" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_c2idx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -136.0
-offset_top = -48.0
-offset_right = -136.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_i28ch")
-script = ExtResource("5_ssfpt")
+layout_mode = 2
+texture = SubResource("ViewportTexture_yh0so")
+script = ExtResource("4_t2b3b")
