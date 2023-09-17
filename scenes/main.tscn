@@ -10,7 +10,7 @@ shader = ExtResource("3_c4elu")
 shader_parameter/palette = ExtResource("3_gqxx0")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yh0so"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("GBScreen")
 
 [node name="Main" type="AspectRatioContainer"]
 anchors_preset = 15
@@ -20,13 +20,13 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.1111
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="GBScreen" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(160, 144)
 render_target_update_mode = 4
 
-[node name="GBJamLogo" type="Sprite2D" parent="SubViewport"]
+[node name="GBJamLogo" type="Sprite2D" parent="GBScreen"]
 texture = ExtResource("1_d8da6")
 centered = false
 
