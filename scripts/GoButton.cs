@@ -28,21 +28,14 @@ public partial class GoButton : Button
         //when the go button is pressed it will progress the day and use resourses
         StatTracker.Days += 1;
         StatTracker.Fuel -= 1;
-        StatTracker.Food -= 1;
 
         //to show us in the console what the stats are
         GD.Print("Day " + StatTracker.Days);
         GD.Print("Fuel left " + StatTracker.Fuel);
-        GD.Print("Food Count " + StatTracker.Food);
-        GD.Print("Scrapt left " + StatTracker.Scrap);
-        GD.Print("ShipHP " + StatTracker.ShipHP);
-
-        //play menu prompts
-        StatTracker.WaitMenus();
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
 	{
 
     }

@@ -8,9 +8,6 @@ public partial class ActionsContainer : HFlowContainer
     {
         // Focus first child node
         var child = GetChildOrNull<Button>(0);
-        if (child != null)
-        {
-            child.GrabFocus();
-        }
+        child?.GrabFocus();
     }
 }

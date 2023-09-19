@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://buli0tsufn4jj"]
+
+[ext_resource type="Script" path="res://scripts/ActionsContainer.cs" id="1_xu3ga"]
+[ext_resource type="Script" path="res://scripts/GBButton.cs" id="1_xwouc"]
+
+[node name="GameOverScreen" type="PanelContainer"]
+offset_right = 160.0
+offset_bottom = 144.0
+
+[node name="GO_Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "game over"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ButtonPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ActionsContainer" type="HFlowContainer" parent="ButtonPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("1_xu3ga")
+
+[node name="RetryGameButton" type="Button" parent="ButtonPanel/ActionsContainer"]
+layout_mode = 2
+size_flags_vertical = 12
+text = "Retry?"
+script = ExtResource("1_xwouc")
