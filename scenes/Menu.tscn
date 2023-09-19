@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2knpd4kb4efp"]
+
+[ext_resource type="Script" path="res://scripts/ActionControl.cs" id="1_xsclh"]
+[ext_resource type="Script" path="res://scripts/GBButton.cs" id="2_bwjtb"]
+[ext_resource type="Script" path="res://scripts/ActionsContainer.cs" id="2_hhnmd"]
+[ext_resource type="Script" path="res://scripts/GoButton.cs" id="3_px4ck"]
+
+[sub_resource type="Animation" id="Animation_pdt0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7tb08"]
+resource_name = "text_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 50]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48ipx"]
+_data = {
+"RESET": SubResource("Animation_pdt0x"),
+"text_animation": SubResource("Animation_7tb08")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xsclh")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 160.0
+offset_bottom = 144.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ChoicePrompt" type="RichTextLabel" parent="MenuPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "What will you do?"
+fit_content = true
+scroll_active = false
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/MarginContainer/ChoicePrompt"]
+autoplay = "text_animation"
+libraries = {
+"": SubResource("AnimationLibrary_48ipx")
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="ActionsContainer" type="HFlowContainer" parent="MenuPanel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_hhnmd")
+
+[node name="StatsButton" type="Button" parent="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer"]
+layout_mode = 2
+text = "Stats"
+script = ExtResource("2_bwjtb")
+
+[node name="RestButton" type="Button" parent="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer"]
+layout_mode = 2
+text = "Rest"
+script = ExtResource("2_bwjtb")
+
+[node name="FixButton" type="Button" parent="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer"]
+layout_mode = 2
+text = "Fix"
+script = ExtResource("2_bwjtb")
+
+[node name="TravelButton" type="Button" parent="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer"]
+layout_mode = 2
+text = "Travel
+"
+script = ExtResource("3_px4ck")
+
+[connection signal="pressed" from="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer/StatsButton" to="." method="OnActionButtonPressed" binds= ["stats"]]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer/TravelButton" to="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer/TravelButton" method="OnButtonPressed"]

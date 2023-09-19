@@ -1,6 +1,64 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dmkcxaefk848f"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dmkcxaefk848f"]
 
 [ext_resource type="FontFile" uid="uid://b8bbjbsp8hxhi" path="res://assets/fonts/Pixie.woff2" id="1_xyd4d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqrcu"]
+resource_name = "TransparentBox"
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb7bw"]
+resource_name = "TransparentBox"
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fas5n"]
+resource_name = "TransparentBox"
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g7sw"]
+resource_name = "TransparentBox"
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yurtp"]
+resource_name = "TransparentBox"
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egj2p"]
 content_margin_left = 2.0
@@ -16,7 +74,30 @@ anti_aliasing = false
 [resource]
 default_font = ExtResource("1_xyd4d")
 default_font_size = 8
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/styles/disabled = SubResource("StyleBoxFlat_oqrcu")
+Button/styles/focus = SubResource("StyleBoxFlat_yb7bw")
+Button/styles/hover = SubResource("StyleBoxFlat_fas5n")
+Button/styles/normal = SubResource("StyleBoxFlat_6g7sw")
+Button/styles/pressed = SubResource("StyleBoxFlat_yurtp")
 HBoxContainer/constants/separation = 1
+HFlowContainer/constants/h_separation = 2
+HFlowContainer/constants/v_separation = 2
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_egj2p")
 TextEdit/colors/background_color = Color(0, 0, 0, 1)
 VBoxContainer/constants/separation = 1

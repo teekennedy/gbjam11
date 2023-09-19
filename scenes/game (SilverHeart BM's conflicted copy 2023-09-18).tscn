@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwbet8c4jnqps"]
+[gd_scene load_steps=12 format=3 uid="uid://cwbet8c4jnqps"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
 [ext_resource type="Script" path="res://scripts/GBButton.cs" id="2_6188v"]
-[ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="3_dsyqy"]
-[ext_resource type="Texture2D" uid="uid://dmkp7bkkr0xir" path="res://assets/sprites/Ship_1.png" id="4_3rt6i"]
+[ext_resource type="Texture2D" uid="uid://d3qa2mh70uxte" path="res://assets/sprites/ship.png" id="3_qdhq3"]
 [ext_resource type="Script" path="res://scripts/SFR_Script.cs" id="4_e7nxw"]
 [ext_resource type="Script" path="res://scripts/GoButton.cs" id="4_hj7w0"]
 [ext_resource type="Script" path="res://scripts/RetryGame.cs" id="5_er3rp"]
@@ -24,46 +23,19 @@ mouse_filter = 2
 theme = ExtResource("1_ianr6")
 script = ExtResource("6_j564a")
 
-[node name="StarBackground" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 144.0
-texture = ExtResource("3_dsyqy")
-
 [node name="Ship_Sprite" type="Sprite2D" parent="."]
-position = Vector2(80, 61)
-texture = ExtResource("4_3rt6i")
-
-[node name="DayCounter" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -17.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-
-[node name="CurrentDay" type="RichTextLabel" parent="DayCounter"]
-layout_mode = 2
-text = "DAY: 0"
-scroll_active = false
-autowrap_mode = 0
-
-[node name="DaysTextTimer" type="Timer" parent="DayCounter"]
-wait_time = 2.0
+position = Vector2(80, 72)
+texture = ExtResource("3_qdhq3")
 
 [node name="MenuPanel" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 104.0
-offset_right = 161.0
-offset_bottom = 144.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Choice" type="VBoxContainer" parent="MenuPanel"]
 layout_mode = 2
@@ -75,8 +47,7 @@ text = "What will you do?"
 
 [node name="ActionsContainer" type="HBoxContainer" parent="MenuPanel/Choice"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 
 [node name="CenterContainer" type="CenterContainer" parent="MenuPanel/Choice/ActionsContainer"]
 layout_mode = 2
@@ -181,6 +152,5 @@ stream = ExtResource("11_73ym6")
 [connection signal="pressed" from="MenuPanel/Choice/ActionsContainer/CenterContainer2/SearchButton" to="SoundHolder" method="Pressed"]
 [connection signal="focus_entered" from="MenuPanel/Choice/ActionsContainer/CenterContainer3/ContinueButton" to="SoundHolder" method="FocusEnter"]
 [connection signal="pressed" from="MenuPanel/Choice/ActionsContainer/CenterContainer3/ContinueButton" to="MenuPanel/Choice/ActionsContainer/CenterContainer3/ContinueButton" method="OnButtonPressed"]
-[connection signal="pressed" from="MenuPanel/Choice/ActionsContainer/CenterContainer3/ContinueButton" to="SFR_Node" method="Travel"]
 [connection signal="pressed" from="MenuPanel/Choice/ActionsContainer/CenterContainer3/ContinueButton" to="SoundHolder" method="Pressed"]
 [connection signal="pressed" from="GameOverScreen/RetryGame" to="GameOverScreen/RetryGame" method="ReloadGame"]

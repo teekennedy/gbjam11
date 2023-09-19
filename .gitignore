@@ -3,3 +3,6 @@
 
 # Build dir
 build/
+
+# VS Code Dir (?)
+.vs/

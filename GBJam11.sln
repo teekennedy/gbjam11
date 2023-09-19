@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBJam11", "GBJam11.csproj", "{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBJam11", "GBJam11.csproj", "{A1E33795-0C07-4A79-91F0-DD331DFBD997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{A9A7E64F-3B91-4F62-ADFD-8B03A1A76DBD}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{A1E33795-0C07-4A79-91F0-DD331DFBD997}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

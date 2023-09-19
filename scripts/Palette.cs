@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Palette : TextureRect
+public partial class Palette : SubViewportContainer
 {
 	// Reference to this node's Shader.
 	private ShaderMaterial _shader;
@@ -31,15 +31,16 @@ public partial class Palette : TextureRect
 	// Method to handle input that has not already been handled by the UI.
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event.IsActionPressed("gb_up") && @event.IsActionPressed("gb_start"))
+		//had to get rid of @event due to events lot letting two happen at once
+		if (Input.IsActionPressed("gb_up") && Input.IsActionPressed("gb_start"))
 		{
 			PalettePath = "res://assets/palettes/warm.png";
 		}
-		else if (@event.IsActionPressed("gb_down") && @event.IsActionPressed("gb_start"))
+		else if (Input.IsActionPressed("gb_down") && Input.IsActionPressed("gb_start"))
 		{
 			PalettePath = "res://assets/palettes/cool.png";
 		}
-		else if (@event.IsActionPressed("gb_a") && @event.IsActionPressed("gb_start"))
+		else if (Input.IsActionPressed("gb_left") && Input.IsActionPressed("gb_start") || Input.IsActionPressed("gb_right") && Input.IsActionPressed("gb_start"))
 		{
 			PalettePath = "res://assets/palettes/lcd.png";
 		}

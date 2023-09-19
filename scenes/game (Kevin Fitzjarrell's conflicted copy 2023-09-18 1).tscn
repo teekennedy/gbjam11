@@ -34,30 +34,6 @@ texture = ExtResource("3_dsyqy")
 position = Vector2(80, 61)
 texture = ExtResource("4_3rt6i")
 
-[node name="DayCounter" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -17.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-
-[node name="CurrentDay" type="RichTextLabel" parent="DayCounter"]
-layout_mode = 2
-text = "DAY: 0"
-scroll_active = false
-autowrap_mode = 0
-
-[node name="DaysTextTimer" type="Timer" parent="DayCounter"]
-wait_time = 2.0
-
 [node name="MenuPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = -1.0

@@ -8,7 +8,6 @@ public partial class GBButton : Button
     {
         var focusedIcon = GD.Load<CompressedTexture2D>("res://ui/focused.png");
         FocusEntered += () => Icon = focusedIcon;
-        Pressed += () => Icon = focusedIcon;
         FocusExited += () => Icon = null;
     }
 
