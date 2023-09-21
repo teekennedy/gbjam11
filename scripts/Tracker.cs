@@ -8,15 +8,26 @@ using System.Linq;
 // test change for Ky
 public partial class Tracker : Control
 {
-	//reminder that doing this does put it in the editor, but wont change during play!
-	[Export] public int Days = 1;
+    //reminder that doing this does put it in the editor, but wont change during play!
+	[Export] public int Days = 0; //we start on day 0 so when player presses travel, we dont get asked "what happend to day 1?". just...trust me on this ~K
 	[Export] public int Fuel = 10;
 	[Export] public int Food = 5;
 	[Export] public int Scrap = 5;
 	[Export] public int ShipHP = 10;
+	[Export] public int Distance = 0; //start at 0 as player has not moved any place yet
 
-	// Button status used by SFR_Script to keep track of which button should be active.
-	[Export] public string ButtonStat = "Search"; //set to "fix" by default just for testing
+
+	//ok, so it turns out that global nodes are for keeping var's the same through scenes, so when we want to reset them we need to keep the og value
+	//I know this is kinda inefficient, but it works to keep this script global
+	private int DaysOG;
+	private int FuelOG;
+	private int FoodOG;
+	private int ScrapOG;
+	private int ShipHPOG;
+	private int DistanceOG;
+
+    // Button status used by SFR_Script to keep track of which button should be active.
+    [Export] public string ButtonStat = "Search"; //set to "fix" by default just for testing
 
 
 	// Scene for main menu
@@ -70,6 +81,14 @@ public partial class Tracker : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//setting the og values for tracker here so if we change the values in an editor or someplace later it wont mess up
+		DaysOG = Days;
+		FuelOG = Fuel;
+		FoodOG = Food;
+		ScrapOG = Scrap;
+		ShipHPOG = ShipHP;
+		DistanceOG = Distance;
+
 		// Get the main Game node.
 		// This only works if the Main scene is running.
 		// Otherwise it will be null.
@@ -89,8 +108,8 @@ public partial class Tracker : Control
 	// Helper method to change the current UI action to a different scene
 	public void SetUIAction(PackedScene scene)
 	{
-		// Remove existing node
-		_ActionNode?.QueueFree();
+        // Remove existing node
+        _ActionNode?.QueueFree();
 		// Instantiate scene as new node
 		_ActionNode = scene.Instantiate<CanvasItem>();
 		// Add new node as child to TrackerNode
@@ -110,8 +129,13 @@ public partial class Tracker : Control
 		SetUIAction(_GameOverScene);
 		var GO_Text = _ActionNode.GetNode<Label>("%GO_Text");
 		GO_Text.Text += "\n" + reason;
-	}
-	public bool CheckGameOver()
+
+		//display distance traveled under gameover
+		var Dis_Text = _ActionNode.GetNode<Label>("%GO_Text/Distance");
+		Dis_Text.Text += "\n" + Distance + " x.z."; //x.z is not a real unit of mesurment, i just made it up
+
+    }
+	public bool CheckGameOver() //this is checked after travel is pressed, but before the main menu comes back
 	{
 		List<string> reasons = new();
 		//(this is kinda a place holder for until we had the drifting in space part)
@@ -127,7 +151,7 @@ public partial class Tracker : Control
 			GD.Print("OUTA FOOD");
 		}
 
-		if (ShipHP <= 0)
+		if (ShipHP <= 0) //game over for ship exploding
 		{
 			reasons.Add("imploaded");
 			GD.Print("OUTA HP");
@@ -242,9 +266,13 @@ public partial class Tracker : Control
 		GD.Print("Fixing Ship . . . "); //set debug log text
 
 		await ShowMessage("Fixing ship . . .");
-		//play fixing animation
+        //play fixing animation
 
-		var hpADD = GD.RandRange(1, 6); ; //random number between 1 and 5 to be the hp added to the ship's hp
+        //Play fixing sound sound
+        var FixSound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/FixFX");
+        FixSound?.Play();
+
+        var hpADD = GD.RandRange(1, 6); ; //random number between 1 and 5 to be the hp added to the ship's hp
 
 		Scrap -= 1; //remove 1 scrap from the inventory
 		ShipHP += hpADD; //add that random value to the ship health
@@ -263,12 +291,7 @@ public partial class Tracker : Control
 	public async void OnTravelAction()
 	{
 		//travel button press make this go and pick random
-		var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to fix ship
-
-
-		//to show us in the console what the stats are
-		GD.Print("Day " + Days);
-		GD.Print("Fuel left " + Fuel);
+		var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to break ship
 
 		if (FixChance <= 1)
 		{//if FixChance is 0 or 1..
@@ -282,18 +305,42 @@ public partial class Tracker : Control
 		// TODO add more travel events choose one at random.
 		await ShowMessage("Space. The final frontier.");
 		Fuel -= 1; // Use some fuel
-		Days += 1; // Advance the day
+		Food -= 1; //consume food
 
-		await WaitMenus(); // display the current day
+        Days += 1; // Advance the day
+		Distance += 1; //advance ship
 
-		OnMenuAction();
-	}
+        //MAKE SURE THIS HAPPENS AFTER WE CHANGE STATS!!!
+        //to show us in the console what the stats are
+        //just to help debug without bringing up stats menu
+        GD.Print("Day " + Days);
+        GD.Print("Fuel left " + Fuel);
+        GD.Print("Food left " + Food);
+        GD.Print("Scrap " + Scrap);
+        GD.Print("Ship HP " + ShipHP);
+		GD.Print("Distance traveld " + Distance);
+
+        await WaitMenus(); // display the current day
+
+        OnMenuAction();
+    }
 
 	public void ReloadGame()
 	{
-		GetTree().ReloadCurrentScene(); //reloads current scene
-		_Ready(); // re-initialize tracker
-	}
+        //reset tracker ints
+        Days = DaysOG;
+        Fuel = FuelOG;
+        Food = FoodOG;
+        Scrap = ScrapOG;
+        ShipHP = ShipHPOG;
+		Distance = DistanceOG;
+
+        SetUIAction(_MenuScene); //instead of reloading the whole scene we will just change menus back to default
+
+        GD.Print("Reset game to day " + Days);
+        
+
+    }
 
 	public async Task WaitMenus() //for display of current day
 	{
@@ -309,8 +356,12 @@ public partial class Tracker : Control
 		_DayTrackerNode.GetNode<Label>("%CurrentDay").Text = "DAY: " + Days;
 		_DayTrackerNode.Visible = true;
 
-		// Get Timer for DayTracker
-		Timer timer = _DayTrackerNode.GetNode<Timer>("%PopupTimer");
+        //Play next day sound
+        var DaySound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/DayCountFX");
+        DaySound?.Play();
+
+        // Get Timer for DayTracker
+        Timer timer = _DayTrackerNode.GetNode<Timer>("%PopupTimer");
 
 		timer.Start(); //start timer
 		await ToSignal(timer, "timeout"); //wait a few seconds

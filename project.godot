@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Tracker="*res://scripts/Tracker.cs"
 Sounds="*res://scenes/Sounds.tscn"
+GlobalWindow="*res://scripts/Window.cs"
 
 [display]
 

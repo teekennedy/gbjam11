@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd6xtvu75ah1x"]
+[gd_scene load_steps=6 format=3 uid="uid://cd6xtvu75ah1x"]
 
 [ext_resource type="AudioStream" uid="uid://dxpmvstmhoaru" path="res://SoundFX/Selected.mp3" id="1_1ln5a"]
 [ext_resource type="AudioStream" uid="uid://bgm3o5t36yfjd" path="res://SoundFX/ChangeSound.mp3" id="2_hahjq"]
+[ext_resource type="AudioStream" uid="uid://des1bfvd05h0b" path="res://SoundFX/GameOver.mp3" id="3_ccx8f"]
+[ext_resource type="AudioStream" uid="uid://dcf44uocul5ew" path="res://SoundFX/DayCountFX.mp3" id="4_xi70h"]
+[ext_resource type="AudioStream" uid="uid://cf4j33owjmtet" path="res://SoundFX/FixedFX.mp3" id="5_qupqk"]
 
 [node name="Sounds" type="Node"]
 
@@ -10,3 +13,12 @@ stream = ExtResource("2_hahjq")
 
 [node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_1ln5a")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ccx8f")
+
+[node name="DayCountFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xi70h")
+
+[node name="FixFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qupqk")

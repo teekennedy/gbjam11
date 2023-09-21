@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxw2twxsdn78a"]
 
-[ext_resource type="PackedScene" uid="uid://cwbet8c4jnqps" path="res://scenes/game.tscn" id="1_87wi1"]
+[ext_resource type="PackedScene" uid="uid://cwbet8c4jnqps" path="res://scenes/game (Ky Kennedy's conflicted copy).tscn" id="1_87wi1"]
 [ext_resource type="Material" uid="uid://dmtxuxc54icnj" path="res://shaders/palette.material" id="1_rybhx"]
 [ext_resource type="Script" path="res://scripts/Palette.cs" id="4_t2b3b"]
 

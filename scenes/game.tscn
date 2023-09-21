@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwbet8c4jnqps"]
+[gd_scene load_steps=5 format=3 uid="uid://5ljocim3bdec"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
 [ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="2_hafbc"]

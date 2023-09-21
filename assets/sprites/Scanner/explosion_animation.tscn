@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdojeoykfwkk4"]
+
+[ext_resource type="Texture2D" uid="uid://bfy8xywitlmkn" path="res://assets/sprites/Ship_2.png" id="1_h26bf"]
+[ext_resource type="Texture2D" uid="uid://b02joel0x1eda" path="res://assets/sprites/Ship_Explosion_1.png" id="2_ixp5i"]
+[ext_resource type="Texture2D" uid="uid://res0xd35874p" path="res://assets/sprites/Ship_Explosion_2.png" id="3_iuea3"]
+[ext_resource type="Texture2D" uid="uid://b6d4d017q25bj" path="res://assets/sprites/Ship_Explosion_3.png" id="4_k3lsm"]
+[ext_resource type="Texture2D" uid="uid://63bd7ohuld53" path="res://assets/sprites/Ship_Explosion_4.png" id="5_hct60"]
+[ext_resource type="Texture2D" uid="uid://dmmnkf061v8vm" path="res://assets/sprites/Ship_Explosion_5.png" id="6_vaogm"]
+[ext_resource type="Texture2D" uid="uid://ccixi3f048sl5" path="res://assets/sprites/Ship_Explosion_6.png" id="7_dl03h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2b51h"]
+animations = [{
+"frames": [{
+"duration": 1.7,
+"texture": ExtResource("1_h26bf")
+}, {
+"duration": 0.8,
+"texture": ExtResource("2_ixp5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iuea3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k3lsm")
+}, {
+"duration": 1.2,
+"texture": ExtResource("5_hct60")
+}, {
+"duration": 1.4,
+"texture": ExtResource("6_vaogm")
+}, {
+"duration": 2.2,
+"texture": ExtResource("7_dl03h")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 48)
+sprite_frames = SubResource("SpriteFrames_2b51h")
+frame = 6
+frame_progress = 1.0

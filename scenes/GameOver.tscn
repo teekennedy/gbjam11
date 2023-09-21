@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://buli0tsufn4jj"]
+[gd_scene load_steps=4 format=3 uid="uid://buli0tsufn4jj"]
 
 [ext_resource type="Script" path="res://scripts/ActionsContainer.cs" id="1_xu3ga"]
 [ext_resource type="Script" path="res://scripts/GBButton.cs" id="1_xwouc"]
+[ext_resource type="AudioStream" uid="uid://ckf67r3qnucjx" path="res://SoundFX/GameOverFX.mp3" id="3_j1wnf"]
 
 [node name="GameOverScreen" type="PanelContainer"]
 offset_right = 160.0
@@ -13,6 +14,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "game over"
 horizontal_alignment = 1
+uppercase = true
+
+[node name="Distance" type="Label" parent="GO_Text"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 37.0
+offset_right = 150.0
+offset_bottom = 57.0
+text = "distance traveled:"
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="ButtonPanel" type="PanelContainer" parent="."]
@@ -29,3 +41,8 @@ layout_mode = 2
 size_flags_vertical = 12
 text = "Retry?"
 script = ExtResource("1_xwouc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j1wnf")
+volume_db = -5.0
+autoplay = true

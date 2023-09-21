@@ -22,7 +22,6 @@ public partial class Palette : SubViewportContainer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GetWindow().Size = new Vector2I(160 * 4, 144 * 4);
 
         _shader = (ShaderMaterial)Material;
         UpdateShaderPalette();

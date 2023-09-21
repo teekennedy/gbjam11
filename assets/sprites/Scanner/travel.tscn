@@ -67,18 +67,15 @@ _data = {
 [node name="Travel" type="Node2D"]
 
 [node name="Ship_Lit" type="Sprite2D" parent="."]
-position = Vector2(89, 62)
+position = Vector2(85.8454, 58.9989)
 texture = ExtResource("4_s818x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ship_Lit"]
 position = Vector2(-42, -1)
 sprite_frames = SubResource("SpriteFrames_t5br2")
-autoplay = "default"
-frame_progress = 0.378225
+frame_progress = 0.00746499
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ship_Lit/AnimatedSprite2D"]
-root_node = NodePath("../..")
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ship_Lit"]
 libraries = {
 "": SubResource("AnimationLibrary_xd43j")
 }

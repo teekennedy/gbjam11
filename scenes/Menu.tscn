@@ -119,7 +119,7 @@ script = ExtResource("2_bwjtb")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Search
+text = "Scan
 "
 script = ExtResource("2_bwjtb")
 
