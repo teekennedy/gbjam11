@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bbjlxrmyfkfay"]
+[gd_scene load_steps=27 format=3 uid="uid://bbjlxrmyfkfay"]
 
 [ext_resource type="Texture2D" uid="uid://prkxonvqpfis" path="res://assets/sprites/Scanner/scan_1.png" id="1_byt4w"]
 [ext_resource type="Texture2D" uid="uid://b8pqp5p4fvavh" path="res://assets/sprites/Scanner/scan_2.png" id="2_3d1fl"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b8lg3u8r6p0oe" path="res://assets/sprites/Scanner/scan_22.png" id="22_eyuq0"]
 [ext_resource type="Texture2D" uid="uid://yw7u1de4vqq6" path="res://assets/sprites/Scanner/scan_23.png" id="23_n3py6"]
 [ext_resource type="Texture2D" uid="uid://da6al4afbbm05" path="res://assets/sprites/Scanner/scan24.png" id="24_5n84w"]
+[ext_resource type="AudioStream" uid="uid://by2laordddgc5" path="res://SoundFX/Radar.mp3" id="25_60mng"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nltmb"]
 animations = [{
@@ -113,3 +114,7 @@ sprite_frames = SubResource("SpriteFrames_nltmb")
 autoplay = "default"
 frame = 23
 frame_progress = 1.0
+
+[node name="ScannerFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_60mng")
+autoplay = true

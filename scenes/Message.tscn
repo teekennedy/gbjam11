@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b01dr53yqscfm"]
+[gd_scene load_steps=7 format=3 uid="uid://b01dr53yqscfm"]
 
 [ext_resource type="Script" path="res://scripts/Message.cs" id="1_5lpmd"]
 [ext_resource type="Texture2D" uid="uid://cfpbk5ga06q48" path="res://ui/focused.png" id="2_5cqg1"]
+[ext_resource type="AudioStream" uid="uid://dy7rqf6164cg4" path="res://SoundFX/TypeSound.mp3" id="2_kycl8"]
 
 [sub_resource type="Animation" id="Animation_pdt0x"]
 length = 0.001
@@ -89,6 +90,9 @@ autoplay = "text_animation"
 libraries = {
 "": SubResource("AnimationLibrary_48ipx")
 }
+
+[node name="CharSound" type="AudioStreamPlayer" parent="MenuPanel/MarginContainer/Message"]
+stream = ExtResource("2_kycl8")
 
 [node name="ContinueButton" type="Button" parent="MenuPanel"]
 unique_name_in_owner = true

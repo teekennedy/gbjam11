@@ -27,7 +27,7 @@ public partial class Tracker : Control
 	private int DistanceOG;
 
     // Button status used by SFR_Script to keep track of which button should be active.
-    [Export] public string ButtonStat = "Search"; //set to "fix" by default just for testing
+    [Export] public string ButtonStat = "Search";
 
 
 	// Scene for main menu
@@ -290,20 +290,51 @@ public partial class Tracker : Control
 
 	public async void OnTravelAction()
 	{
-		//travel button press make this go and pick random
-		var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to break ship
+		await GenerateEvent(); //run the generate event function
+        //^ right now, this only picks a type of event and removes/adds resources. NEEDS ANIMATIONS pls <3
 
-		if (FixChance <= 1)
-		{//if FixChance is 0 or 1..
-			ButtonStat = "Fix"; //Then switch the button status to Fix
-		}
-		else
-		{//if FixChance is more than 1..
-			ButtonStat = "Search"; //Then switch the button status to Search
-		}
+        //^^^ BUG: there's code in the GenerateEvent() function to change the text based on the events, but it doesn't appear on screen?
+        //
+        // (GenerateEvent() is at the bottom of this script)
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        // putting this here so the bug is easier to find, remove after bug is fixed :p
 
-		// TODO add more travel events choose one at random.
-		await ShowMessage("Space. The final frontier.");
+        await ShowMessage("Space. The final frontier.");
 		Fuel -= 1; // Use some fuel
 		Food -= 1; //consume food
 
@@ -319,6 +350,17 @@ public partial class Tracker : Control
         GD.Print("Scrap " + Scrap);
         GD.Print("Ship HP " + ShipHP);
 		GD.Print("Distance traveld " + Distance);
+
+        var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to fix broken ship
+
+        if (FixChance <= 1)
+        {//if FixChance is 0 or 1..
+            ButtonStat = "Fix"; //Then switch the button status to Fix
+        }
+        else
+        {//if FixChance is more than 1..
+            ButtonStat = "Search"; //Then switch the button status to Search
+        }
 
         await WaitMenus(); // display the current day
 
@@ -370,4 +412,98 @@ public partial class Tracker : Control
 			_ActionNode.Visible = true;
 		}
 	}
+
+    public int eventType;
+
+    public async Task GenerateEvent() //for selecting a random event
+    {
+        int _scrap = 0; //set temp int to 0
+        int _food = 0; //set temp int to 0
+        int _fuel = 0; //set temp int to 0
+        int _hp = 0; //set temp int to 0
+
+        GD.Print("Generating Event"); //debug
+        eventType = GD.RandRange(0, 11); //random number between 0 and 11
+
+        //EVENT KEY
+        //0-5 = Nothing happens
+        //6 = Raid
+        //7 = Aid
+        //8 = Extra Scrap
+        //9 = Extra Food
+        //10 = BONK
+
+        switch (eventType)
+        {
+            case 6: //1 = Raid
+                    //AT LEAST 1 of EACH resource is removed from the ship inventory
+                GD.Print("Event = Raid");
+                await ShowMessage("Oh No! A Raid Ship!"); //change text
+
+                //animation of a raid ship
+
+                _scrap = GD.RandRange(1, 5); //random number between 1 and 4
+                _food = GD.RandRange(1, 5); //random number between 1 and 4
+                _fuel = GD.RandRange(1, 5); //random number between 1 and 4
+
+                Scrap -= _scrap; //remove from ship inventory
+                Food -= _food; //remove from ship inventory
+                Fuel -= _fuel; //remove from ship inventory
+
+                await ShowMessage("Lost " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
+
+                break;
+
+            case 7: //2 = Aid
+                    //AT LEAST 2 of EACH resource is added to ship inventory
+                GD.Print("Event = Aid");
+                await ShowMessage("An Aiding Ship!"); //change text
+
+                //animation of a helpful ship
+
+                _scrap = GD.RandRange(2, 5); //random number between 2 and 4
+                _food = GD.RandRange(2, 5); //random number between 2 and 4
+                _fuel = GD.RandRange(2, 5); //random number between 2 and 4
+
+                Scrap += _scrap; //add to ship inventory
+                Food += _food; //add to ship inventory
+                Fuel += _fuel; //add to ship inventory
+
+                await ShowMessage("Gained " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
+
+                break;
+
+            case 8: //3 = Extra Scrap
+                    //AT LEAST 2 scrap is added to ship inventory
+                GD.Print("Event = Extra Scrap Found");
+                _scrap = GD.RandRange(2, 5); //random number between 2 and 4
+                Scrap += _food; //add to ship inventory
+                await ShowMessage("Found "+ _scrap + " extra scrap!"); //change text
+                break;
+
+            case 9: //4 = Extra Food
+                    //AT LEAST 2 food is added to ship inventory
+                GD.Print("Event = Extra Food Found");
+                _food = GD.RandRange(2, 5); //random number between 2 and 4
+                Food += _food; //add to ship inventory
+                await ShowMessage("Found " + _food + " extra food!"); //change text
+                break;
+
+            case 10: //5 = BONK
+                GD.Print("Event = BONK");
+                await ShowMessage("We Hit . . . Something?"); //change text
+
+                //play an animation of bumping into something(asteroid, space debris, garfield)
+
+                _hp = GD.RandRange(2, 5); //random number between 2 and 4
+                ShipHP -= _hp; //remove ship health
+                break;
+        }
+
+		if (eventType < 6)
+		{
+            GD.Print("Event = Nothing");
+            await ShowMessage("Safe Travels!"); //change text
+        }
+    }
 }

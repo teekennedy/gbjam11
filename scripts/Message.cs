@@ -13,13 +13,19 @@ public partial class Message : RichTextLabel
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//start sound for typing
+		GetChild<AudioStreamPlayer>(1).Play();
+
 		var continueButton = GetNode<Button>("%ContinueButton");
 		var textAnimation = GetChild<AnimationPlayer>(0);
 		continueButton.GrabFocus();
 		void continueMessage()
 		{
-			// If textAnimation is done
-			if (!textAnimation.IsPlaying())
+            //stop sound
+            GetChild<AudioStreamPlayer>(1).Stop();
+
+            // If textAnimation is done
+            if (!textAnimation.IsPlaying())
 			{
 				// Is there more text to show?
 				if (GetLineCount() > GetVisibleLineCount())
@@ -36,9 +42,11 @@ public partial class Message : RichTextLabel
 				VisibleRatio = 1.0f;
 				// Make continue button visible
 				continueButton.Visible = true;
-			}
+            }
 		}
 		continueButton.Pressed += continueMessage;
 		textAnimation.AnimationFinished += (_) => continueButton.Visible = true;
-	}
+        textAnimation.AnimationFinished += (_) => GetChild<AudioStreamPlayer>(1).Stop();
+
+    }
 }

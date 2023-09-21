@@ -67,7 +67,7 @@ _data = {
 [node name="Travel" type="Node2D"]
 
 [node name="Ship_Lit" type="Sprite2D" parent="."]
-position = Vector2(89, 62)
+position = Vector2(80, 48)
 texture = ExtResource("4_s818x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ship_Lit"]
