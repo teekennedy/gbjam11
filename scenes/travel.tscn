@@ -1,0 +1,219 @@
+[gd_scene load_steps=18 format=3 uid="uid://bo28wyn2q7ivr"]
+
+[ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="1_x1hlh"]
+[ext_resource type="Script" path="res://scripts/Message.cs" id="2_b6urp"]
+[ext_resource type="Texture2D" uid="uid://cfpbk5ga06q48" path="res://ui/focused.png" id="3_r50hi"]
+[ext_resource type="Texture2D" uid="uid://d3hwo83upkclw" path="res://assets/sprites/Ship_Lit.png" id="4_s818x"]
+[ext_resource type="Texture2D" uid="uid://caaak4kijmmsw" path="res://assets/sprites/Ship_TravelAnimation_V1_1.png" id="5_vh6r6"]
+[ext_resource type="Texture2D" uid="uid://nxymy68du8iq" path="res://assets/sprites/Ship_TravelAnimation_V2_2.png" id="6_ll2o6"]
+[ext_resource type="Texture2D" uid="uid://d1lxjm5cbjpx3" path="res://assets/sprites/Ship_TravelAnimation_V1_2.png" id="7_6l05o"]
+
+[sub_resource type="Animation" id="Animation_m408k"]
+resource_name = "Star_Travel"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 72), Vector2(0, 72), Vector2(-80, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_uwy3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 72)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egv7h"]
+_data = {
+"RESET": SubResource("Animation_uwy3w"),
+"Star_Travel": SubResource("Animation_m408k")
+}
+
+[sub_resource type="Animation" id="Animation_pdt0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7tb08"]
+resource_name = "text_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48ipx"]
+_data = {
+"RESET": SubResource("Animation_pdt0x"),
+"text_animation": SubResource("Animation_7tb08")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5br2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vh6r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ll2o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6l05o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ll2o6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_y1sod"]
+resource_name = "ShipTravel"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(84, 44), Vector2(88, 48), Vector2(84, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_k2bs3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xd43j"]
+_data = {
+"RESET": SubResource("Animation_k2bs3"),
+"ShipTravel": SubResource("Animation_y1sod")
+}
+
+[node name="Travel" type="Node2D"]
+
+[node name="BgStars" type="Sprite2D" parent="."]
+position = Vector2(80, 72)
+texture = ExtResource("1_x1hlh")
+
+[node name="BgStars" type="Sprite2D" parent="BgStars"]
+position = Vector2(160, 0)
+texture = ExtResource("1_x1hlh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BgStars"]
+libraries = {
+"": SubResource("AnimationLibrary_egv7h")
+}
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+offset_top = 96.0
+offset_right = 160.0
+offset_bottom = 144.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Message" type="RichTextLabel" parent="MenuPanel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+scroll_active = false
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("2_b6urp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/MarginContainer/Message"]
+autoplay = "text_animation"
+libraries = {
+"": SubResource("AnimationLibrary_48ipx")
+}
+
+[node name="ContinueButton" type="Button" parent="MenuPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+button_mask = 0
+icon = ExtResource("3_r50hi")
+
+[node name="Ship_Lit" type="Sprite2D" parent="."]
+position = Vector2(80, 48)
+texture = ExtResource("4_s818x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ship_Lit"]
+position = Vector2(-42, -1)
+sprite_frames = SubResource("SpriteFrames_t5br2")
+frame_progress = 0.55688
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ship_Lit"]
+libraries = {
+"": SubResource("AnimationLibrary_xd43j")
+}
