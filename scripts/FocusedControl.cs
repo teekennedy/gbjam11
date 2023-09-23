@@ -1,21 +1,26 @@
 using Godot;
 using System;
 
-public partial class ActionsContainer : HFlowContainer
+public partial class FocusedControl : Control
 {
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print("ActionsContainer ready");
+        GD.Print("FocusedControl ready");
         // Focus first child node
 
-        bool FirstButtonGrabFocus(Node node)
+        static bool FirstButtonGrabFocus(Node node)
         {
             if (node is Button)
             {
                 Button button = node as Button;
+                GD.Print("Found button node!");
                 button.GrabFocus();
                 return false;
+            }
+            else
+            {
+                GD.Print(node.GetPath());
             }
             return true;
         }

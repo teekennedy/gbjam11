@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://5ljocim3bdec"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
-[ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="2_hafbc"]
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="2_21jju"]
 [ext_resource type="Texture2D" uid="uid://dmkp7bkkr0xir" path="res://assets/sprites/Ship_1.png" id="2_p6h8l"]
 [ext_resource type="PackedScene" uid="uid://ub0cy8e8psmi" path="res://scenes/DayTracker.tscn" id="4_jy86q"]
 
@@ -15,10 +15,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_ianr6")
 
-[node name="BG_Stars_Sprite" type="Sprite2D" parent="."]
-position = Vector2(80, 48)
-texture = ExtResource("2_hafbc")
-offset = Vector2(2.08165e-12, 24)
+[node name="ParallaxStars" parent="." instance=ExtResource("2_21jju")]
 
 [node name="Ship_Sprite" type="Sprite2D" parent="."]
 position = Vector2(80, 48)

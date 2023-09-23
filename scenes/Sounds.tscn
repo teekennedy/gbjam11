@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd6xtvu75ah1x"]
+[gd_scene load_steps=9 format=3 uid="uid://cd6xtvu75ah1x"]
 
 [ext_resource type="AudioStream" uid="uid://dxpmvstmhoaru" path="res://SoundFX/Selected.mp3" id="1_1ln5a"]
 [ext_resource type="AudioStream" uid="uid://bgm3o5t36yfjd" path="res://SoundFX/ChangeSound.mp3" id="2_hahjq"]
 [ext_resource type="AudioStream" uid="uid://des1bfvd05h0b" path="res://SoundFX/GameOver.mp3" id="3_ccx8f"]
 [ext_resource type="AudioStream" uid="uid://dcf44uocul5ew" path="res://SoundFX/DayCountFX.mp3" id="4_xi70h"]
 [ext_resource type="AudioStream" uid="uid://cf4j33owjmtet" path="res://SoundFX/FixedFX.mp3" id="5_qupqk"]
+[ext_resource type="AudioStream" uid="uid://c6jc1hqoyh6kl" path="res://SoundFX/BG_Music.mp3" id="6_ey1mt"]
+[ext_resource type="AudioStream" uid="uid://dpy7xphxw21k1" path="res://SoundFX/found_loot.mp3" id="7_4suii"]
+[ext_resource type="AudioStream" uid="uid://dbw6vedkoncg0" path="res://SoundFX/no_loot.mp3" id="8_sdxl2"]
 
 [node name="Sounds" type="Node"]
 
@@ -22,3 +25,15 @@ stream = ExtResource("4_xi70h")
 
 [node name="FixFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qupqk")
+
+[node name="ThinkMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ey1mt")
+volume_db = -5.0
+
+[node name="LootFound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4suii")
+volume_db = -5.0
+
+[node name="NoLoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sdxl2")
+volume_db = -5.0

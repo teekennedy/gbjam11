@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="O1egon Train im Spem"
-run/main_scene="res://scenes/gb_screen.tscn"
+config/name="Celestial Frontier"
+run/main_scene="res://scenes/title_screen.tscn"
 config/features=PackedStringArray("4.1", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Tracker="*res://scripts/Tracker.cs"
 Sounds="*res://scenes/Sounds.tscn"
-GlobalWindow="*res://scripts/Window.cs"
+Main="*res://scenes/gb_screen.tscn"
 
 [display]
 

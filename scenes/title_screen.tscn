@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://hq6med38x4jn"]
+
+[ext_resource type="Script" path="res://scripts/FocusedControl.cs" id="1_87766"]
+[ext_resource type="Texture2D" uid="uid://docro7pqr372r" path="res://assets/title.png" id="1_s8hcl"]
+[ext_resource type="Script" path="res://scripts/GBButton.cs" id="3_yro5n"]
+[ext_resource type="AudioStream" uid="uid://c58delvyn1wdn" path="res://SoundFX/TitleSong.mp3" id="4_81us3"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_87766")
+
+[node name="Title" type="Sprite2D" parent="."]
+texture = ExtResource("1_s8hcl")
+centered = false
+
+[node name="ActionsContainer" type="HFlowContainer" parent="Title"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+focus_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Title/ActionsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+script = ExtResource("3_yro5n")
+
+[node name="CreditsButton" type="Button" parent="Title/ActionsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"
+script = ExtResource("3_yro5n")
+
+[node name="ExitButton" type="Button" parent="Title/ActionsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
+script = ExtResource("3_yro5n")
+
+[node name="TitleSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_81us3")
+autoplay = true

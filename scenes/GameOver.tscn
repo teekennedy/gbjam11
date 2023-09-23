@@ -5,6 +5,9 @@
 [ext_resource type="Script" path="res://scripts/GBButton.cs" id="1_xwouc"]
 [ext_resource type="AudioStream" uid="uid://ckf67r3qnucjx" path="res://SoundFX/GameOverFX.mp3" id="3_j1wnf"]
 
+[sub_resource type="Animation" id="Animation_w2pjm"]
+length = 8.0
+
 [sub_resource type="Animation" id="Animation_ux203"]
 resource_name = "fade_sound"
 length = 8.0
@@ -32,9 +35,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_w2pjm"]
-length = 8.0
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ummnd"]
 _data = {
 "RESET": SubResource("Animation_w2pjm"),
@@ -43,18 +43,20 @@ _data = {
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 160.0
-offset_bottom = 144.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Explosion" parent="." instance=ExtResource("1_q6qhi")]
 
 [node name="GO_Text" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-offset_top = 59.0
+offset_top = 50.0
 offset_right = 160.0
-offset_bottom = 85.0
+offset_bottom = 76.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 16
@@ -64,10 +66,9 @@ uppercase = true
 
 [node name="Distance" type="Label" parent="GO_Text"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 37.0
-offset_right = 150.0
-offset_bottom = 57.0
+offset_top = 34.0
+offset_right = 165.0
+offset_bottom = 60.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "distance traveled:"
@@ -76,22 +77,11 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="ButtonPanel" type="PanelContainer" parent="."]
-layout_mode = 2
-offset_top = 113.0
-offset_right = 160.0
-offset_bottom = 144.0
+visible = false
+layout_direction = 1
+layout_mode = 0
+offset_bottom = 66.0
 size_flags_vertical = 8
-
-[node name="ActionsContainer" type="HFlowContainer" parent="ButtonPanel"]
-layout_mode = 2
-size_flags_horizontal = 4
-script = ExtResource("1_xu3ga")
-
-[node name="RetryGameButton" type="Button" parent="ButtonPanel/ActionsContainer"]
-layout_mode = 2
-size_flags_vertical = 12
-text = "Retry?"
-script = ExtResource("1_xwouc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_j1wnf")
@@ -102,3 +92,27 @@ autoplay = "fade_sound"
 libraries = {
 "": SubResource("AnimationLibrary_ummnd")
 }
+
+[node name="ActionsContainer" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("1_xu3ga")
+
+[node name="RetryGameButton" type="Button" parent="ActionsContainer"]
+layout_mode = 2
+text = "Retry?"
+script = ExtResource("1_xwouc")
+
+[node name="BackButton" type="Button" parent="ActionsContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("1_xwouc")

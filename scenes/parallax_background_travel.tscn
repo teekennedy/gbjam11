@@ -1,14 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dod7wghcy8pln"]
+[gd_scene load_steps=2 format=3 uid="uid://dod7wghcy8pln"]
 
 [ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="1_7ob3w"]
-[ext_resource type="Script" path="res://scenes/parallax_background_travel.gd" id="1_mraws"]
 
 [node name="ParallaxBackground_travel" type="ParallaxBackground"]
-script = ExtResource("1_mraws")
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.01, 0.01)
-motion_mirroring = Vector2(143, 0)
+motion_offset = Vector2(-1, 2.08165e-12)
+motion_mirroring = Vector2(144, 2.08165e-12)
 
 [node name="BG_Stars" type="Sprite2D" parent="ParallaxLayer"]
 position = Vector2(80, 72)

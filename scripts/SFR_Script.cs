@@ -40,9 +40,20 @@ public partial class SFR_Script : Node
 		switch (Tracker.ButtonStat)
 		{ //switch based on button status
 			case "Fix": //Button Status is Fix
-				FixButton.Visible = true;
-				GD.Print("Fix On");
-				break;
+
+				if (Tracker.ShipHP == Tracker.ShipHPOG)
+				{ //if the ship's hp is already at max.. 
+                    SwitchButton(); //then restart this function
+					break;
+				}
+				else
+				{ //if the ship's hp is NOT at max..
+					//..then the fix button is usable
+                    FixButton.Visible = true;
+                    GD.Print("Fix On");
+                    break;
+                }
+
 
 			case "Search": //Button Status is Search
 				SearchButton.Visible = true;
