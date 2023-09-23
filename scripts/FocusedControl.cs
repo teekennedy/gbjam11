@@ -6,27 +6,28 @@ public partial class FocusedControl : Control
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print("FocusedControl ready");
-        // Focus first child node
-
+        //GD.Print("FocusedControl _Ready");
+        // Function that calls GrabFocus() on the first button node
         static bool FirstButtonGrabFocus(Node node)
         {
+            // GD.Print(node.GetPath());
+            // Have we found a button?
             if (node is Button)
             {
+                // Call GrabFocus on button
                 Button button = node as Button;
-                GD.Print("Found button node!");
                 button.GrabFocus();
+                // Stop checking nodes
                 return false;
             }
-            else
-            {
-                GD.Print(node.GetPath());
-            }
+            // Continue searching for button
             return true;
         }
+        // Run the above function against all nodes that are chilren of this node.
         WalkChildren(this, FirstButtonGrabFocus);
     }
 
+    // Calls walkFunc once for every direct and indirect child of node, depth-first.
     public void WalkChildren(Node node, Func<Node, bool> walkFunc)
     {
 
@@ -51,6 +52,5 @@ public partial class FocusedControl : Control
                 return;
             }
         }
-
     }
 }

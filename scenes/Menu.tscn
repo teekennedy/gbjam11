@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2knpd4kb4efp"]
 
+[ext_resource type="Script" path="res://scripts/FocusedControl.cs" id="1_3jp08"]
 [ext_resource type="Script" path="res://scripts/GBButton.cs" id="2_bwjtb"]
-[ext_resource type="Script" path="res://scripts/ActionsContainer.cs" id="2_hhnmd"]
 [ext_resource type="Script" path="res://scripts/SFR_Script.cs" id="3_eqpil"]
 
 [sub_resource type="Animation" id="Animation_pdt0x"]
@@ -49,6 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_3jp08")
 
 [node name="MenuPanel" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -93,7 +94,6 @@ vertical_scroll_mode = 3
 [node name="ActionsContainer" type="HFlowContainer" parent="MenuPanel/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_hhnmd")
 
 [node name="StatsButton" type="Button" parent="MenuPanel/VBoxContainer/ScrollContainer/ActionsContainer"]
 unique_name_in_owner = true

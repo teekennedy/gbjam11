@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://buli0tsufn4jj"]
 
+[ext_resource type="Script" path="res://scripts/FocusedControl.cs" id="1_5e0us"]
 [ext_resource type="PackedScene" uid="uid://bdojeoykfwkk4" path="res://scenes/explosion_animation.tscn" id="1_q6qhi"]
-[ext_resource type="Script" path="res://scripts/ActionsContainer.cs" id="1_xu3ga"]
 [ext_resource type="Script" path="res://scripts/GBButton.cs" id="1_xwouc"]
 [ext_resource type="AudioStream" uid="uid://ckf67r3qnucjx" path="res://SoundFX/GameOverFX.mp3" id="3_j1wnf"]
 
@@ -48,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5e0us")
 
 [node name="Explosion" parent="." instance=ExtResource("1_q6qhi")]
 
@@ -105,7 +106,6 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 alignment = 1
-script = ExtResource("1_xu3ga")
 
 [node name="RetryGameButton" type="Button" parent="ActionsContainer"]
 layout_mode = 2
