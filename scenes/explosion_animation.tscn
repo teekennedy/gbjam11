@@ -47,7 +47,7 @@ texture = ExtResource("1_2ssvf")
 offset = Vector2(2.08165e-12, 24)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(80, 36)
+position = Vector2(80, 48)
 sprite_frames = SubResource("SpriteFrames_2b51h")
 autoplay = "default"
 

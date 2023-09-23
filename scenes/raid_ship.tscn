@@ -1,0 +1,280 @@
+[gd_scene load_steps=21 format=3 uid="uid://dwgkdcg6h5cld"]
+
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_jrb5e"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_oqjca"]
+[ext_resource type="Texture2D" uid="uid://5rr51ykgoe44" path="res://assets/sprites/Raid_ship.png" id="3_oalo7"]
+[ext_resource type="Texture2D" uid="uid://b4fgwunw16bk0" path="res://assets/sprites/Raid_ship_bullet_1.png" id="4_6sop5"]
+[ext_resource type="Texture2D" uid="uid://c6jh5x6xft2ig" path="res://assets/sprites/Raid_ship_bullet_2.png" id="5_gbp1o"]
+[ext_resource type="Texture2D" uid="uid://dlbggdy4ifijy" path="res://assets/sprites/Raid_ship_bullet_3.png" id="6_70hvh"]
+[ext_resource type="Texture2D" uid="uid://dswvcxnihufou" path="res://assets/sprites/Raid_ship_bullet_4.png" id="7_kxk7l"]
+[ext_resource type="Texture2D" uid="uid://cm34r75ehy223" path="res://assets/sprites/Raid_ship_bullet_5.png" id="8_5buwe"]
+[ext_resource type="Texture2D" uid="uid://brfk447y5sj5n" path="res://assets/sprites/Raid_ship_bullet_6.png" id="9_npe31"]
+[ext_resource type="Texture2D" uid="uid://cn7wuv5xe8rmp" path="res://assets/sprites/Raid_ship_bullet_7.png" id="10_yosje"]
+[ext_resource type="Texture2D" uid="uid://27rd611saolx" path="res://assets/sprites/Raid_ship_bullet_8.png" id="11_3kcvv"]
+[ext_resource type="Texture2D" uid="uid://bugt0453ounv4" path="res://assets/sprites/Shot_1.png" id="12_ahq27"]
+[ext_resource type="Texture2D" uid="uid://bykfcoh8i7k10" path="res://assets/sprites/Shot_2.png" id="13_b3jpi"]
+[ext_resource type="Texture2D" uid="uid://b7gnwpxjc8wax" path="res://assets/sprites/Shot_3.png" id="14_l4rr5"]
+[ext_resource type="Texture2D" uid="uid://bmxc3xjxdip4e" path="res://assets/sprites/Shot_4.png" id="15_gqp31"]
+
+[sub_resource type="Animation" id="Animation_skaxv"]
+resource_name = "ship_movement"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 2.2, 5.4944, 6, 6.5, 8.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(50, 48), Vector2(50, 48), Vector2(42, 48), Vector2(42, 48), Vector2(80, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 2.2, 5.4944, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(197, 48), Vector2(115, 48), Vector2(115, 48), Vector2(45, 174)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shots_fired:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2, 5.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../hit:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../hit:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_goj55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(197, 53)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shots_fired:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../hit:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk6ty"]
+_data = {
+"RESET": SubResource("Animation_goj55"),
+"ship_movement": SubResource("Animation_skaxv")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3jpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6sop5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gbp1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_70hvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kxk7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5buwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_npe31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yosje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3kcvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6sop5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gbp1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_70hvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kxk7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5buwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_npe31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yosje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3kcvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6sop5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gbp1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_70hvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kxk7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5buwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_npe31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yosje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3kcvv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50ttl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ahq27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_b3jpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_l4rr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gqp31")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="emeny" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_jrb5e")]
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(80, 48)
+texture = ExtResource("2_oqjca")
+
+[node name="RaidShip" type="Sprite2D" parent="."]
+position = Vector2(197, 53)
+texture = ExtResource("3_oalo7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RaidShip"]
+autoplay = "ship_movement"
+libraries = {
+"": SubResource("AnimationLibrary_tk6ty")
+}
+
+[node name="Shots_fired" type="AnimatedSprite2D" parent="."]
+top_level = true
+position = Vector2(68.5, 48)
+scale = Vector2(1.53125, 1)
+sprite_frames = SubResource("SpriteFrames_k3jpt")
+autoplay = "default"
+frame = 23
+frame_progress = 1.0
+
+[node name="hit" type="AnimatedSprite2D" parent="."]
+texture_repeat = 1
+position = Vector2(45, 63)
+sprite_frames = SubResource("SpriteFrames_50ttl")
+frame = 4
+frame_progress = 1.0
+
+[node name="AnimationTree" type="AnimationTree" parent="hit"]

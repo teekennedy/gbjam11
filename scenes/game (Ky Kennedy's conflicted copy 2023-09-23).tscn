@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://5ljocim3bdec"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
-[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="2_x5epe"]
-[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="3_8tpsq"]
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="2_21jju"]
+[ext_resource type="Texture2D" uid="uid://dmkp7bkkr0xir" path="res://assets/sprites/Ship_1.png" id="2_p6h8l"]
 [ext_resource type="PackedScene" uid="uid://ub0cy8e8psmi" path="res://scenes/DayTracker.tscn" id="4_jy86q"]
 
 [node name="Game" type="Control"]
@@ -15,11 +15,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_ianr6")
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_x5epe")]
+[node name="ParallaxStars" parent="." instance=ExtResource("2_21jju")]
 
 [node name="Ship_Sprite" type="Sprite2D" parent="."]
 position = Vector2(80, 48)
-texture = ExtResource("3_8tpsq")
+texture = ExtResource("2_p6h8l")
 
 [node name="DayTracker" parent="." instance=ExtResource("4_jy86q")]
 unique_name_in_owner = true

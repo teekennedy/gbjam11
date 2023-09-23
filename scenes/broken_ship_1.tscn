@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgu4p4gkfiwqv"]
+
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_ssi27"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_udfhd"]
+[ext_resource type="Texture2D" uid="uid://cxlwd7cpml8o0" path="res://assets/sprites/broken_ship_A_1.png" id="3_071q6"]
+[ext_resource type="Texture2D" uid="uid://brrl60ut3naod" path="res://assets/sprites/broken_ship_A_2.png" id="4_ogja8"]
+[ext_resource type="Texture2D" uid="uid://dnpxlrsjf25kh" path="res://assets/sprites/broken_ship_A_3.png" id="5_fbr15"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a03j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_071q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ogja8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fbr15")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_gptu1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(196, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ship2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_j7qbs"]
+resource_name = "broken_ship1"
+length = 13.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 3.1, 6, 7.7, 10.1, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(47, 48), Vector2(47, 48), Vector2(52, 1), Vector2(52, 1), Vector2(80, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 3.1, 6, 11.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(196, 55), Vector2(119, 55), Vector2(119, 55), Vector2(-35, 55)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ab4j2"]
+_data = {
+"RESET": SubResource("Animation_gptu1"),
+"broken_ship1": SubResource("Animation_j7qbs")
+}
+
+[node name="broken_ship" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_ssi27")]
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(80, 48)
+texture = ExtResource("2_udfhd")
+
+[node name="broken_ship1" type="AnimatedSprite2D" parent="."]
+position = Vector2(196, 55)
+sprite_frames = SubResource("SpriteFrames_a03j6")
+autoplay = "default"
+frame_progress = 0.154492
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="broken_ship1"]
+autoplay = "broken_ship1"
+libraries = {
+"": SubResource("AnimationLibrary_ab4j2")
+}

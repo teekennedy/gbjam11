@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo28wyn2q7ivr"]
+[gd_scene load_steps=9 format=3 uid="uid://bo28wyn2q7ivr"]
 
-[ext_resource type="PackedScene" uid="uid://dod7wghcy8pln" path="res://scenes/parallax_background_travel.tscn" id="1_p6qny"]
 [ext_resource type="Texture2D" uid="uid://d3hwo83upkclw" path="res://assets/sprites/Ship_Lit.png" id="4_s818x"]
 [ext_resource type="Texture2D" uid="uid://caaak4kijmmsw" path="res://assets/sprites/Ship_TravelAnimation_V1_1.png" id="5_vh6r6"]
 [ext_resource type="Texture2D" uid="uid://nxymy68du8iq" path="res://assets/sprites/Ship_TravelAnimation_V2_2.png" id="6_ll2o6"]
@@ -66,8 +65,6 @@ _data = {
 }
 
 [node name="Travel" type="Node2D"]
-
-[node name="ParallaxBackground_travel" parent="." instance=ExtResource("1_p6qny")]
 
 [node name="Ship_Lit" type="Sprite2D" parent="."]
 position = Vector2(80, 48)

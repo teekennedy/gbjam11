@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dly44twcnr1d8"]
+
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_hylsi"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_w7adn"]
+[ext_resource type="Texture2D" uid="uid://bk83cda1th42o" path="res://assets/sprites/Comet_1.png" id="3_cm7ic"]
+[ext_resource type="Texture2D" uid="uid://c0b1jry802djy" path="res://assets/sprites/Comet_2.png" id="4_wln3p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah3kj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cm7ic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wln3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="Animation" id="Animation_imh3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(180, -36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_1auv6"]
+resource_name = "comet"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(180, -36), Vector2(114, 23), Vector2(117, 20), Vector2(-35, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(77, 49), Vector2(80, 48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2n3l0"]
+_data = {
+"RESET": SubResource("Animation_imh3w"),
+"comet": SubResource("Animation_1auv6")
+}
+
+[node name="comet" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_hylsi")]
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(80, 48)
+texture = ExtResource("2_w7adn")
+
+[node name="comet" type="AnimatedSprite2D" parent="."]
+position = Vector2(180, -36)
+sprite_frames = SubResource("SpriteFrames_ah3kj")
+autoplay = "default"
+frame_progress = 0.980717
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "comet"
+libraries = {
+"": SubResource("AnimationLibrary_2n3l0")
+}

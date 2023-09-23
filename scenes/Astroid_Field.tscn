@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://rljgd0bt26jj"]
+
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_6g2gp"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_xckf6"]
+[ext_resource type="Texture2D" uid="uid://dhq84grk86d3h" path="res://assets/sprites/Astroid_1.png" id="3_fa0lm"]
+[ext_resource type="Texture2D" uid="uid://bmdyge1pip4ig" path="res://assets/sprites/Astroid_2.png" id="4_nl0v2"]
+[ext_resource type="Texture2D" uid="uid://mvh3gqi7krxf" path="res://assets/sprites/Astroid_3.png" id="5_oomeo"]
+
+[sub_resource type="Animation" id="Animation_ipraw"]
+resource_name = "Astroid field"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(212, 53), Vector2(-142, 53)]
+}
+
+[sub_resource type="Animation" id="Animation_id18p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(212, 53)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5rdei"]
+_data = {
+"Astroid field": SubResource("Animation_ipraw"),
+"RESET": SubResource("Animation_id18p")
+}
+
+[node name="Explosion" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_6g2gp")]
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(54, 48)
+texture = ExtResource("2_xckf6")
+
+[node name="Astroids" type="Sprite2D" parent="."]
+position = Vector2(212, 53)
+texture = ExtResource("3_fa0lm")
+
+[node name="Astroid2" type="Sprite2D" parent="Astroids"]
+position = Vector2(38, -46)
+texture = ExtResource("4_nl0v2")
+
+[node name="Astroid3" type="Sprite2D" parent="Astroids"]
+position = Vector2(54, -8)
+texture = ExtResource("5_oomeo")
+
+[node name="Astroid4" type="Sprite2D" parent="Astroids"]
+position = Vector2(-44, 25)
+texture = ExtResource("5_oomeo")
+
+[node name="Astroid5" type="Sprite2D" parent="Astroids"]
+position = Vector2(44, 36)
+texture = ExtResource("5_oomeo")
+
+[node name="Astroid6" type="Sprite2D" parent="Astroids"]
+position = Vector2(84, 16)
+texture = ExtResource("4_nl0v2")
+
+[node name="Astroid7" type="Sprite2D" parent="Astroids"]
+position = Vector2(108, -38)
+texture = ExtResource("3_fa0lm")
+
+[node name="Astroid8" type="Sprite2D" parent="Astroids"]
+position = Vector2(121, 6)
+texture = ExtResource("5_oomeo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Astroids"]
+autoplay = "Astroid field"
+libraries = {
+"": SubResource("AnimationLibrary_5rdei")
+}
