@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo28wyn2q7ivr"]
+[gd_scene load_steps=10 format=3 uid="uid://bo28wyn2q7ivr"]
 
 [ext_resource type="Texture2D" uid="uid://d3hwo83upkclw" path="res://assets/sprites/Ship_Lit.png" id="4_s818x"]
 [ext_resource type="Texture2D" uid="uid://caaak4kijmmsw" path="res://assets/sprites/Ship_TravelAnimation_V1_1.png" id="5_vh6r6"]
+[ext_resource type="AudioStream" uid="uid://vdaoooso3bsy" path="res://SoundFX/Travel.mp3" id="5_xnb4s"]
 [ext_resource type="Texture2D" uid="uid://nxymy68du8iq" path="res://assets/sprites/Ship_TravelAnimation_V2_2.png" id="6_ll2o6"]
 [ext_resource type="Texture2D" uid="uid://d1lxjm5cbjpx3" path="res://assets/sprites/Ship_TravelAnimation_V1_2.png" id="7_6l05o"]
 
@@ -82,3 +83,7 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_xd43j")
 }
+
+[node name="TravelFX" type="AudioStreamPlayer" parent="Ship_Lit/AnimatedSprite2D"]
+stream = ExtResource("5_xnb4s")
+autoplay = true

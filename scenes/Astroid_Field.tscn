@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://rljgd0bt26jj"]
+[gd_scene load_steps=10 format=3 uid="uid://rljgd0bt26jj"]
 
 [ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_6g2gp"]
 [ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_xckf6"]
 [ext_resource type="Texture2D" uid="uid://dhq84grk86d3h" path="res://assets/sprites/Astroid_1.png" id="3_fa0lm"]
 [ext_resource type="Texture2D" uid="uid://bmdyge1pip4ig" path="res://assets/sprites/Astroid_2.png" id="4_nl0v2"]
 [ext_resource type="Texture2D" uid="uid://mvh3gqi7krxf" path="res://assets/sprites/Astroid_3.png" id="5_oomeo"]
+[ext_resource type="AudioStream" uid="uid://xnc8jdjsxnyi" path="res://SoundFX/MetPelets.mp3" id="6_alxk8"]
 
 [sub_resource type="Animation" id="Animation_ipraw"]
 resource_name = "Astroid field"
@@ -88,3 +89,7 @@ autoplay = "Astroid field"
 libraries = {
 "": SubResource("AnimationLibrary_5rdei")
 }
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_alxk8")
+autoplay = true

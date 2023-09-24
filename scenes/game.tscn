@@ -1,8 +1,8 @@
-[gd_scene load_steps=73 format=3 uid="uid://5ljocim3bdec"]
+[gd_scene load_steps=74 format=3 uid="uid://5ljocim3bdec"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
 [ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="2_21jju"]
-[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="3_8tpsq"]
+[ext_resource type="Texture2D" uid="uid://c7j1g1c7ofvpt" path="res://assets/sprites/Ship_3.png" id="3_2m0tn"]
 [ext_resource type="Texture2D" uid="uid://caaak4kijmmsw" path="res://assets/sprites/Ship_TravelAnimation_V1_1.png" id="4_4nnt0"]
 [ext_resource type="Script" path="res://scripts/ShipAnimationTree.cs" id="4_d4801"]
 [ext_resource type="Texture2D" uid="uid://dty7g6me308i5" path="res://assets/sprites/Raid_ship_shot/RSS_14.png" id="4_j5muk"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d1lxjm5cbjpx3" path="res://assets/sprites/Ship_TravelAnimation_V1_2.png" id="6_e7kko"]
 [ext_resource type="Texture2D" uid="uid://cafal4u56ebmu" path="res://assets/sprites/Raid_ship_shot/RSS_2.png" id="6_g5jf6"]
 [ext_resource type="Texture2D" uid="uid://dcdw14wxqbdvb" path="res://assets/sprites/Raid_ship_shot/RSS_3.png" id="7_l5aq1"]
-[ext_resource type="Texture2D" uid="uid://bxli4vt8r2n3h" path="res://assets/sprites/Ship_Lit_fix.png" id="7_oe2hn"]
 [ext_resource type="Texture2D" uid="uid://dbwgcyo2mvcvk" path="res://assets/sprites/Raid_ship_shot/RSS_4.png" id="8_cebr2"]
 [ext_resource type="Texture2D" uid="uid://1peyuycuufgq" path="res://assets/sprites/Raid_ship_shot/RSS_5.png" id="9_mtu5e"]
 [ext_resource type="Texture2D" uid="uid://0d4ovn0x0tkd" path="res://assets/sprites/Raid_ship_shot/RSS_6.png" id="10_aadj0"]
@@ -48,6 +47,86 @@
 [ext_resource type="Texture2D" uid="uid://yw7u1de4vqq6" path="res://assets/sprites/Scanner/scan_23.png" id="42_wq1v0"]
 [ext_resource type="Texture2D" uid="uid://da6al4afbbm05" path="res://assets/sprites/Scanner/scan24.png" id="43_qe15h"]
 [ext_resource type="AudioStream" uid="uid://by2laordddgc5" path="res://SoundFX/Radar.mp3" id="44_y8rgf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwnt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_ixwid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2kuik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7encx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_l4t3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5v4tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lfl6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_iwaf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_3y4ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_wwagq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_o0ss5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xa84g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_u4nye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ii8dn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_tiwsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_gnpcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_djk2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_mfchk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_0xriv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_v67x7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_g1dxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_h482g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_sq3w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_wq1v0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_qe15h")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ax2t"]
 animations = [{
@@ -122,62 +201,50 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Scanner:speed_scale")
+tracks/4/path = NodePath("Scanner/ScannerFX:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2.08165e-12]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Scanner/ScannerFX:playing")
+tracks/5/path = NodePath("AnimatedFlame:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Scanner:visible")
+tracks/6/path = NodePath(".:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 2,
+"values": [0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatedFlame:visible")
+tracks/7/path = NodePath("Scanner:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_8tpsq")]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_skaxv"]
@@ -299,102 +366,60 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Scanner:speed_scale")
+tracks/4/path = NodePath(".:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2.08165e-12]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Scanner/ScannerFX:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Scanner:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatedFlame:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_8tpsq")]
+"update": 2,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_dq0l7"]
 resource_name = "ship_scan"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Scanner:speed_scale")
+tracks/0/path = NodePath("Scanner/ScannerFX:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1.0, 2.08165e-12]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Scanner/ScannerFX:playing")
+tracks/1/path = NodePath("Scanner:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Scanner:visible")
+tracks/2/path = NodePath("Scanner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"default"],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_dmacs"]
@@ -416,26 +441,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedFlame:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("AnimatedFlame:modulate")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:texture")
+tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_oe2hn")]
+"update": 2,
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tk6ty"]
@@ -450,32 +475,43 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01hw3"]
 animation = &"enemy_raid"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ca6j0"]
-animation = &"RESET"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1xrm"]
 animation = &"ship_idle"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_78bjd"]
-filter_enabled = true
-filters = ["../RaidShip:position", "../RaidShip:rotation", "../RaidShip:speed_scale", "../RaidShip:visible", "../Scanner/ScannerFX:playing", "../Scanner:speed_scale", "../Scanner:visible", ".:texture", "AnimatedFlame:visible"]
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6rybt"]
-graph_offset = Vector2(47.04, -3.33786e-06)
+graph_offset = Vector2(-21.12, 19.2)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_m1xrm")
 nodes/Animation/position = Vector2(310, 60)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ca6j0")
-"nodes/Animation 2/position" = Vector2(340, 190)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_78bjd")
-nodes/OneShot/position = Vector2(580, 40)
 nodes/output/position = Vector2(800, 120)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2"]
+node_connections = [&"output", 0, &"Animation"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7p4l0"]
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fiwom"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcckr"]
+animation = &"ship_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nlafi"]
 animation = &"ship_scan"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sr7qb"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2vr6v"]
+nodes/Add2/node = SubResource("AnimationNodeAdd2_fiwom")
+nodes/Add2/position = Vector2(355, 188)
+nodes/IdleAnimation/node = SubResource("AnimationNodeAnimation_hcckr")
+nodes/IdleAnimation/position = Vector2(100, 140)
+nodes/ScanAnimation/node = SubResource("AnimationNodeAnimation_nlafi")
+nodes/ScanAnimation/position = Vector2(100, 270)
+nodes/output/position = Vector2(600, 160)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"IdleAnimation", &"Add2", 1, &"ScanAnimation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7p7l"]
 animation = &"ship_travel"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_esqn8"]
+graph_offset = Vector2(-207.36, -28.8)
+nodes/TravelAnimation/node = SubResource("AnimationNodeAnimation_t7p7l")
+nodes/TravelAnimation/position = Vector2(-110, 120)
+nodes/output/position = Vector2(90, 120)
+node_connections = [&"output", 0, &"TravelAnimation"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fu6cg"]
 advance_mode = 2
@@ -485,15 +521,15 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sd24v"]
 xfade_time = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgbav"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uw8fd"]
+xfade_time = 0.75
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uji04"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dduf7"]
+xfade_time = 0.75
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g28qq"]
-xfade_time = 0.5
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ivdnq"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yc0tq"]
-xfade_time = 1.0
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws2rt"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kbs0f"]
 states/Start/position = Vector2(-51, 100.5)
@@ -501,12 +537,12 @@ states/enemy_raid/node = SubResource("AnimationNodeAnimation_01hw3")
 states/enemy_raid/position = Vector2(236.125, 45)
 states/ship_idle/node = SubResource("AnimationNodeBlendTree_6rybt")
 states/ship_idle/position = Vector2(139.441, 161.484)
-states/ship_scan/node = SubResource("AnimationNodeAnimation_7p4l0")
-states/ship_scan/position = Vector2(409.5, 80.5)
-states/ship_travel/node = SubResource("AnimationNodeAnimation_sr7qb")
-states/ship_travel/position = Vector2(444.5, 163.5)
-transitions = ["Start", "ship_idle", SubResource("AnimationNodeStateMachineTransition_fu6cg"), "ship_idle", "enemy_raid", SubResource("AnimationNodeStateMachineTransition_r54fw"), "enemy_raid", "ship_idle", SubResource("AnimationNodeStateMachineTransition_sd24v"), "ship_idle", "ship_scan", SubResource("AnimationNodeStateMachineTransition_qgbav"), "ship_scan", "ship_idle", SubResource("AnimationNodeStateMachineTransition_uji04"), "ship_idle", "ship_travel", SubResource("AnimationNodeStateMachineTransition_g28qq"), "ship_travel", "ship_idle", SubResource("AnimationNodeStateMachineTransition_yc0tq")]
-graph_offset = Vector2(-259.259, -6.17249)
+states/ship_scan/node = SubResource("AnimationNodeBlendTree_2vr6v")
+states/ship_scan/position = Vector2(438.961, 2.64238)
+states/ship_travel/node = SubResource("AnimationNodeBlendTree_esqn8")
+states/ship_travel/position = Vector2(575.396, 176.506)
+transitions = ["Start", "ship_idle", SubResource("AnimationNodeStateMachineTransition_fu6cg"), "ship_idle", "enemy_raid", SubResource("AnimationNodeStateMachineTransition_r54fw"), "enemy_raid", "ship_idle", SubResource("AnimationNodeStateMachineTransition_sd24v"), "ship_travel", "ship_idle", SubResource("AnimationNodeStateMachineTransition_uw8fd"), "ship_idle", "ship_travel", SubResource("AnimationNodeStateMachineTransition_dduf7"), "ship_idle", "ship_scan", SubResource("AnimationNodeStateMachineTransition_ivdnq"), "ship_scan", "ship_idle", SubResource("AnimationNodeStateMachineTransition_ws2rt")]
+graph_offset = Vector2(-242.039, -37.3576)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m7dg0"]
 animations = [{
@@ -561,86 +597,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pwnt7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("20_ixwid")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_2kuik")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_7encx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_l4t3r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_5v4tf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_lfl6v")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_iwaf1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_3y4ps")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_wwagq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_o0ss5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_xa84g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_u4nye")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_ii8dn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_tiwsc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("34_gnpcs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("35_djk2g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("36_mfchk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("37_0xriv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_v67x7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_g1dxo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_h482g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_sq3w4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("42_wq1v0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_qe15h")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
-
 [node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -656,13 +612,22 @@ theme = ExtResource("1_ianr6")
 [node name="PlayerShip" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(80, 48)
-texture = ExtResource("3_8tpsq")
+texture = ExtResource("3_2m0tn")
+hframes = 2
+
+[node name="Scanner" type="AnimatedSprite2D" parent="PlayerShip"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-1.58765, -0.653923)
+sprite_frames = SubResource("SpriteFrames_pwnt7")
+
+[node name="ScannerFX" type="AudioStreamPlayer" parent="PlayerShip/Scanner"]
+stream = ExtResource("44_y8rgf")
 
 [node name="AnimatedFlame" type="AnimatedSprite2D" parent="PlayerShip"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-40, -1)
 sprite_frames = SubResource("SpriteFrames_5ax2t")
-autoplay = "default"
+frame_progress = 0.859866
 
 [node name="ShipAnimations" type="AnimationPlayer" parent="PlayerShip"]
 playback_process_mode = 0
@@ -675,9 +640,7 @@ blend_times = [&"ship_idle", &"ship_travel", 1.0]
 tree_root = SubResource("AnimationNodeStateMachine_kbs0f")
 anim_player = NodePath("../ShipAnimations")
 active = true
-parameters/ship_idle/OneShot/active = false
-parameters/ship_idle/OneShot/internal_active = false
-parameters/ship_idle/OneShot/request = 0
+parameters/ship_scan/Add2/add_amount = 1.0
 script = ExtResource("4_d4801")
 
 [node name="RaidShip" type="AnimatedSprite2D" parent="."]
@@ -685,19 +648,10 @@ visible = false
 position = Vector2(225, 48)
 sprite_frames = SubResource("SpriteFrames_m7dg0")
 autoplay = "default"
+speed_scale = 0.0
 offset = Vector2(-28, 2.08165e-12)
 
 [node name="DayTracker" parent="." instance=ExtResource("4_jy86q")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-
-[node name="Scanner" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(80, 48)
-sprite_frames = SubResource("SpriteFrames_pwnt7")
-autoplay = "default"
-speed_scale = 2.08165e-12
-
-[node name="ScannerFX" type="AudioStreamPlayer" parent="Scanner"]
-stream = ExtResource("44_y8rgf")

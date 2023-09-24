@@ -14,6 +14,7 @@ public partial class ShipAnimationTree : AnimationTree
         var tracker = GetNode<Tracker>("/root/Tracker");
         tracker.ActionStarted += OnTrackerActionStarted;
         AnimationFinished += (name) => GD.Print("Animation finished: ", name);
+        AnimationStarted += (name) => GD.Print("Animation  started: ", name);
     }
 
     private void OnTrackerActionStarted(int action)
