@@ -20,6 +20,9 @@ public partial class Tracker : Control
     public enum ActionType
     {
         Raided,
+        Scan,
+        Idle,
+        Travel,
     }
 
     [Signal] public delegate void ActionStartedEventHandler(int action);
@@ -238,6 +241,8 @@ public partial class Tracker : Control
             return;
         }
 
+        SignalActionStarted(ActionType.Idle);
+
         //if bg music is not playing make sure it starts playing again
         if (!_BG_Music.Playing) { _BG_Music.Play(); }
 
@@ -267,9 +272,11 @@ public partial class Tracker : Control
     public async void OnSearchAction() // the function for searching debris
     {
         GD.Print("Searching . . . ");
-        await ShowMessage("Searching . . . ");
 
         // play some kind of radar/scan animation
+        SignalActionStarted(ActionType.Scan);
+
+        await ShowMessage("Searching . . . ");
 
         var rn = GD.Randi() % 11; //random number between 0 and 10, jus to decide if loot is found or not
         if (rn <= 5)
@@ -373,6 +380,7 @@ public partial class Tracker : Control
 
     public async void OnTravelAction()
     {
+        SignalActionStarted(ActionType.Travel);
         if (Distance == 30) //set to 30 for testing, change later if it should be longer
         { //if the player reaches the end..
 
