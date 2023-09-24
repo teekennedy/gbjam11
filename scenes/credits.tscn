@@ -35,73 +35,101 @@ text = "TEAM LOW NOON"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TitleContainer" type="GridContainer" parent="."]
+[node name="Names" type="VBoxContainer" parent="."]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -77.0
+offset_right = 80.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Names"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Thing" type="Label" parent="Names/Control"]
+layout_mode = 2
+offset_top = 4.0
 offset_right = 160.0
-offset_bottom = 150.0
-columns = 2
-
-[node name="Title" type="VBoxContainer" parent="TitleContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-
-[node name="Thing" type="Label" parent="TitleContainer/Title"]
-layout_mode = 2
-text = "Producer"
+offset_bottom = 30.0
+text = "SoundFX/Code"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="TitleContainer/Title"]
+[node name="Name" type="Label" parent="Names/Control"]
 layout_mode = 2
-text = "Sue Con"
+offset_top = 21.0
+offset_right = 160.0
+offset_bottom = 47.0
+text = "Kevin Fitzjarrell"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Title2" type="VBoxContainer" parent="TitleContainer"]
+[node name="Control2" type="Control" parent="Names"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 
-[node name="Thing" type="Label" parent="TitleContainer/Title2"]
+[node name="Thing" type="Label" parent="Names/Control2"]
 layout_mode = 2
-text = "sound"
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 30.0
+text = "Music/Code"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="TitleContainer/Title2"]
+[node name="Name" type="Label" parent="Names/Control2"]
 layout_mode = 2
-text = "soo ndez"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Title3" type="VBoxContainer" parent="TitleContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-
-[node name="Thing" type="Label" parent="TitleContainer/Title3"]
-layout_mode = 2
-text = "code"
-horizontal_alignment = 1
-
-[node name="Name" type="Label" parent="TitleContainer/Title3"]
-layout_mode = 2
-text = "Xi göt"
+offset_top = 21.0
+offset_right = 160.0
+offset_bottom = 47.0
+text = "Silver Fitzjarrell"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Title4" type="VBoxContainer" parent="TitleContainer"]
+[node name="Control3" type="Control" parent="Names"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 
-[node name="Thing" type="Label" parent="TitleContainer/Title4"]
+[node name="Thing" type="Label" parent="Names/Control3"]
 layout_mode = 2
-text = "sleepy"
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 30.0
+text = "Art/Animation"
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="TitleContainer/Title4"]
+[node name="Name" type="Label" parent="Names/Control3"]
 layout_mode = 2
-text = "Kyle"
+offset_top = 21.0
+offset_right = 160.0
+offset_bottom = 47.0
+text = "Ky Kennedy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Control4" type="Control" parent="Names"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Thing" type="Label" parent="Names/Control4"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 30.0
+text = "Code/Code"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="Names/Control4"]
+layout_mode = 2
+offset_top = 21.0
+offset_right = 160.0
+offset_bottom = 47.0
+text = "Terrance Kennedy"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -113,7 +141,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -45.0
-offset_top = -33.0
+offset_top = -31.0
+offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3

@@ -24,8 +24,9 @@ public partial class Tracker : Control
     private int FuelOG;
     private int FoodOG;
     private int ScrapOG;
-    public int ShipHPOG; //keep this public for the random event
     private int DistanceOG;
+    private int Sanity;
+    public int ShipHPOG; //keep this public for the random event
 
     // Button status used by SFR_Script to keep track of which button should be active.
     [Export] public string ButtonStat = "Search";
@@ -48,6 +49,9 @@ public partial class Tracker : Control
     public CanvasItem _ActionNode;
     // Node for the Day Tracker overlay
     private Control _DayTrackerNode;
+
+    // Node for the Monster Ending Scene
+    private PackedScene _End_Monster;
 
     private AudioStreamPlayer _BG_Music;
 
@@ -106,6 +110,7 @@ public partial class Tracker : Control
         ScrapOG = Scrap;
         ShipHPOG = ShipHP;
         DistanceOG = Distance;
+        Sanity = 50; //set to 50 by default
 
         // Get the main Game node.
         _GameNode = GetNode("/root/Main/SubViewportContainer/GBScreen/Game");
@@ -118,6 +123,7 @@ public partial class Tracker : Control
         _MessageScene = GD.Load<PackedScene>("res://scenes/Message.tscn");
         _TitleScene = GD.Load<PackedScene>("res://scenes/title_screen.tscn");
         _CreditsScene = GD.Load<PackedScene>("res://scenes/credits.tscn");
+        _End_Monster = GD.Load<PackedScene>("res://scenes/End_Monster.tscn");
 
         //set bg music
         _BG_Music = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/ThinkMusic");
@@ -175,6 +181,7 @@ public partial class Tracker : Control
         Dis_Text.Text += "\n" + Distance + " x.z."; //x.z is not a real unit of mesurment, i just made it up
 
     }
+
     public bool CheckGameOver() //this is checked after travel is pressed, but before the main menu comes back
     {
         List<string> reasons = new();
@@ -195,6 +202,13 @@ public partial class Tracker : Control
         {
             reasons.Add("imploaded");
             GD.Print("OUTA HP");
+        }
+        if (Sanity <= 0)
+        {
+            reasons.Add("sanity");
+            GD.Print("OUTA SANITY");
+
+            //ADD MONSTER ENDING
         }
         if (reasons.Count > 0)
         {
@@ -219,7 +233,7 @@ public partial class Tracker : Control
         SetUIAction(_MenuScene);
     }
 
-    public async void OnRestAction() // the function for resting 
+    public async void OnRestAction() // the function for resting
     {
         GD.Print("Resting . . . ");
         await ShowMessage("Resting . . . ");
@@ -232,6 +246,7 @@ public partial class Tracker : Control
 
         ButtonStat = "NULL"; //turn off Find/Search/Fix buttons
         Days += 1; // Advance the day
+        Sanity += 10; //add 5 to sanity
 
         await WaitMenus(); // display the current day
 
@@ -255,6 +270,7 @@ public partial class Tracker : Control
             var LootSound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/NoLoot");
             LootSound?.Play();
             _BG_Music.Stop();
+            Sanity -= 1; //remove 1 from sanity
 
             await ShowMessage("Nothing Was Found!");
         }
@@ -267,6 +283,7 @@ public partial class Tracker : Control
             var LootSound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/LootFound");
             LootSound?.Play();
             _BG_Music.Stop();
+            Sanity += 1; //add 1 to sanity
 
             await ShowMessage("Loot Found!");
 
@@ -275,7 +292,7 @@ public partial class Tracker : Control
             var sp = GD.RandRange(0, 5); //random number between 0 and 5 of Scrap
 
             if (fd == 0 && fl == 0 && sp == 0)
-            { //if all three are 0.. 
+            { //if all three are 0..
               //then pick new numbers
                 fd = GD.RandRange(0, 10); //random number between 0 and 10 of Food
                 fl = GD.RandRange(0, 10); //random number between 0 and 10 of Fuel
@@ -295,11 +312,6 @@ public partial class Tracker : Control
             GD.Print("Food: " + Food + ". Fuel: " + Fuel + ". Scrap: " + Scrap); //set text in debug log
         }
         ButtonStat = "Rest"; //Then switch the button status to Rest
-
-        //lets not progress the day for just searching, let the player have some breathing room
-        //Days += 1; // Advance the day
-
-        //await WaitMenus(); // display the current day
 
         OnMenuAction(); // Back to main menu
     }
@@ -337,6 +349,7 @@ public partial class Tracker : Control
         GD.Print("Ship Fixed!"); //print "ship fixed" in the debug log
         await ShowMessage("Ship Fixed!"); //change text to say "ship fixed"
         GD.Print("Scrap Left " + Scrap); //set text in debug log
+        Sanity += 1; //add 1 to sanity
 
         ButtonStat = "Search"; //Then switch the button status to Search
 
@@ -349,40 +362,66 @@ public partial class Tracker : Control
 
     public async void OnTravelAction()
     {
-        await GenerateEvent(); //run the generate event function
-                               //^ right now, this only picks a type of event and removes/adds resources. NEEDS ANIMATIONS pls <3
+        if (Distance == 30) //set to 30 for testing, change later if it should be longer
+        { //if the player reaches the end..
 
-        Fuel -= 1; // Use some fuel
-        Food -= 1; //consume food
+            if (Sanity < 30)
+            { //if sanity is BELOW 30..
+                GD.Print("BAD END // Monster Ending");
+                SetUIAction(_End_Monster);
+                //play the Monster ending
+            }
 
-        Days += 1; // Advance the day
-        Distance += 1; //advance ship
+            if (Sanity > 30 && Sanity < 70)
+            { //if sanity is BETWEEN 30 and 70..
+                GD.Print("MID END // Space Station Ending");
+                //play the Space Station ending
+            }
 
-        //MAKE SURE THIS HAPPENS AFTER WE CHANGE STATS!!!
-        //to show us in the console what the stats are
-        //just to help debug without bringing up stats menu
-        GD.Print("Day " + Days);
-        GD.Print("Fuel left " + Fuel);
-        GD.Print("Food left " + Food);
-        GD.Print("Scrap " + Scrap);
-        GD.Print("Ship HP " + ShipHP);
-        GD.Print("Distance traveled " + Distance);
-        GD.Print("Velocity ", Velocity);
-
-        var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to fix broken ship
-
-        if (FixChance <= 1)
-        {//if FixChance is 0 or 1..
-            ButtonStat = "Fix"; //Then switch the button status to Fix
+            if (Sanity > 70)
+            { //if sanity is MORE THAN 70..
+                GD.Print("GOOD END // Planet Ending");
+                //play the Planet ending
+            }
         }
         else
-        {//if FixChance is more than 1..
-            ButtonStat = "Search"; //Then switch the button status to Search
+        { //if the player is NOT at the end..
+            await GenerateEvent(); //run the generate event function
+            //^ right now, this only picks a type of event and removes/adds resources. NEEDS ANIMATIONS pls <3
+
+            Fuel -= 1; // Use some fuel
+            Food -= 1; //consume food
+
+            Days += 1; // Advance the day
+            Distance += 1; //advance ship
+            Sanity -= 1; //remove 1 from sanity
+
+            //MAKE SURE THIS HAPPENS AFTER WE CHANGE STATS!!!
+            //to show us in the console what the stats are
+            //just to help debug without bringing up stats menu
+            GD.Print("Day " + Days);
+            GD.Print("Fuel left " + Fuel);
+            GD.Print("Food left " + Food);
+            GD.Print("Scrap " + Scrap);
+            GD.Print("Ship HP " + ShipHP);
+            GD.Print("Distance traveled " + Distance);
+            GD.Print("Velocity ", Velocity);
+
+            var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to fix broken ship
+
+            if (FixChance <= 1)
+            {//if FixChance is 0 or 1..
+                ButtonStat = "Fix"; //Then switch the button status to Fix
+            }
+            else
+            {//if FixChance is more than 1..
+                ButtonStat = "Search"; //Then switch the button status to Search
+            }
+
+            await WaitMenus(); // display the current day
+
+            OnMenuAction();
         }
-
-        await WaitMenus(); // display the current day
-
-        OnMenuAction();
     }
 
     public void ReloadGame()
@@ -457,6 +496,85 @@ public partial class Tracker : Control
 
         switch (eventType)
         {
+            case 0:
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 0 /BAD");
+                    await ShowMessage("think there's any. . . monsters out here. . . ?"); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 0 /GOOD");
+                    await ShowMessage("Think There's Any Neat Planets Out Here?"); //change text
+                }
+                break;
+
+            case 1:
+
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 1 /BAD");
+                    await ShowMessage("space is safe. . . right. . . ?"); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 1 /GOOD");
+                    await ShowMessage("Safe Travels!"); //change textt
+                }
+                break;
+
+            case 2:
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 2 /BAD");
+                    await ShowMessage("it's so. . . empty out here. . ."); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 2 /GOOD");
+                    await ShowMessage("Wow! Space Sure Is Empty!"); //change textt
+                }
+                break;
+
+            case 3:
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 3 /BAD");
+                    await ShowMessage("is anyone else out here. . . ?"); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 3 /GOOD");
+                    await ShowMessage("More People Should Visit Space!"); //change textt
+                }
+                break;
+
+            case 4:
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 4 /BAD");
+                    await ShowMessage("space is so. . . scary. . ."); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 4 /GOOD");
+                    await ShowMessage("Space Is So Fun!"); //change textt
+                }
+                break;
+
+            case 5:
+                if (Sanity < 50)
+                { //if sanity is LESS than 50..
+                    GD.Print("Event = Nothing 5 /BAD");
+                    await ShowMessage("is. . . something out there. . . ?"); //change text
+                }
+                else
+                {//if sanity is MORE than 50..
+                    GD.Print("Event = Nothing 5 /GOOD");
+                    await ShowMessage("Wow! Space Rocks!"); //change textt
+                }
+                break;
+
             case 6: //1 = Raid
                     //AT LEAST 1 of EACH resource is removed from the ship inventory
                 GD.Print("Event = Raid");
@@ -471,6 +589,8 @@ public partial class Tracker : Control
                 Scrap -= _scrap; //remove from ship inventory
                 Food -= _food; //remove from ship inventory
                 Fuel -= _fuel; //remove from ship inventory
+                ShipHP -= 1; //remove 1 from the ship's hp
+                Sanity -= 5; //remove 5 from sanity
 
                 await ShowMessage("Lost " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
 
@@ -490,6 +610,7 @@ public partial class Tracker : Control
                 Scrap += _scrap; //add to ship inventory
                 Food += _food; //add to ship inventory
                 Fuel += _fuel; //add to ship inventory
+                Sanity += 5; //add 5 to sanity
 
                 await ShowMessage("Gained " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
 
@@ -497,6 +618,23 @@ public partial class Tracker : Control
 
             case 8: //3 = Extra Scrap
                     //AT LEAST 2 scrap is added to ship inventory
+                int BrokenShip = GD.RandRange(1, 3); //random number between 1 and 3
+
+                switch (BrokenShip)
+                {//switch for picking which art to use
+                    case 1:
+                        //use the first broken ship art
+                        break;
+
+                    case 2:
+                        //use the second broken ship art
+                        break;
+
+                    case 3:
+                        //use the thrid broken ship art
+                        break;
+                }
+
                 GD.Print("Event = Extra Scrap Found");
                 _scrap = GD.RandRange(2, 4); //random number between 2 and 4
                 Scrap += _food; //add to ship inventory
@@ -505,6 +643,23 @@ public partial class Tracker : Control
 
             case 9: //4 = Extra Food
                     //AT LEAST 2 food is added to ship inventory
+                BrokenShip = GD.RandRange(1, 3); //random number between 1 and 3
+
+                switch (BrokenShip)
+                {//switch for picking which art to use
+                    case 1:
+                        //use the first broken ship art
+                        break;
+
+                    case 2:
+                        //use the second broken ship art
+                        break;
+
+                    case 3:
+                        //use the thrid broken ship art
+                        break;
+                }
+
                 GD.Print("Event = Extra Food Found");
                 _food = GD.RandRange(2, 4); //random number between 2 and 4
                 Food += _food; //add to ship inventory
@@ -513,19 +668,26 @@ public partial class Tracker : Control
 
             case 10: //5 = BONK
                 GD.Print("Event = BONK");
-                await ShowMessage("We Hit . . . Something?"); //change text
 
-                //play an animation of bumping into something(asteroid, space debris, garfield)
+                int ThingHit = GD.RandRange(1, 2); //random number between 1 and 2
+
+                switch (ThingHit)
+                {//switch for picking which art to use
+                    case 1:
+                        //use the comet art
+                        break;
+
+                    case 2:
+                        //use the small rocks art
+                        break;
+                }
+
+                await ShowMessage("We Hit. . . Something?"); //change text
 
                 _hp = GD.RandRange(2, 4); //random number between 2 and 4
                 ShipHP -= _hp; //remove ship health
+                Sanity -= 5; //remove 5 from sanity
                 break;
-        }
-
-        if (eventType < 6)
-        {
-            GD.Print("Event = Nothing");
-            await ShowMessage("Safe Travels!"); //change text
         }
     }
 }
