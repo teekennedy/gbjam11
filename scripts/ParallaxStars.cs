@@ -23,7 +23,7 @@ public partial class ParallaxStars : ParallaxBackground
         if (StarOffset >= 1.0F)
         {
             // scroll the stars in the negative x direction, relative to the ship's velocity
-            ScrollOffset -= new Vector2((float)(int)(StarOffset), 0);
+            ScrollBaseOffset -= new Vector2((float)(int)(StarOffset), 0);
             StarOffset = 0.0F;
         }
     }

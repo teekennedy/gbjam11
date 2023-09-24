@@ -23,8 +23,15 @@ public partial class Main : AspectRatioContainer
         }
         // Get the Game node to place it under
         var gameNode = GetNode<Node>("%Game");
-        // Remove scene from root node.
-        // This must be CallDeferred because all nodes are currently processing their _Ready() function.
+        // If the loaded scene is a duplicate Game scene, remove it
+        if (sceneNode.Name == "Game")
+        {
+            GD.Print("Removing duplicate Game scene");
+            sceneNode.QueueFree();
+            return;
+        }
+        // Move scene from the root node to the Game node.
+        // These calls must be CallDeferred because all nodes are currently processing their _Ready() function.
         parentNode.CallDeferred("remove_child", sceneNode);
         // Request that the _Ready func be called again once the node is added to the node tree
         sceneNode.CallDeferred("request_ready");

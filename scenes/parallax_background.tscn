@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dnte714oy2oip" path="res://assets/sprites/BG_Stars.png" id="2_4n8y6"]
 
 [node name="ParallaxStars" type="ParallaxBackground"]
+follow_viewport_enabled = true
 script = ExtResource("1_eppuo")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]

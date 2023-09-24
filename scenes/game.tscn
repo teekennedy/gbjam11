@@ -246,7 +246,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_liki0"]
 resource_name = "ship_idle"
-length = 3.0
+length = 4.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -255,106 +255,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
+"times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(80, 48), Vector2(80, 47), Vector2(83, 49)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../RaidShip:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(225, 48)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../RaidShip:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../RaidShip:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Scanner:speed_scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2.08165e-12]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Scanner/ScannerFX:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Scanner:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatedFlame:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_8tpsq")]
 }
 
 [sub_resource type="Animation" id="Animation_dq0l7"]
@@ -447,29 +351,29 @@ _data = {
 "ship_travel": SubResource("Animation_dmacs")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01hw3"]
+animation = &"enemy_raid"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_28gxq"]
+filter_enabled = true
+filters = ["../RaidShip:position", "../RaidShip:rotation", "../RaidShip:speed_scale", "../RaidShip:visible", "../Scanner/ScannerFX:playing", "../Scanner:speed_scale", "../Scanner:visible", ".:texture", "AnimatedFlame:visible"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ca6j0"]
 animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1xrm"]
 animation = &"ship_idle"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_78bjd"]
-filter_enabled = true
-filters = ["../RaidShip:position", "../RaidShip:rotation", "../RaidShip:speed_scale", "../RaidShip:visible", "../Scanner/ScannerFX:playing", "../Scanner:speed_scale", "../Scanner:visible", ".:texture", "AnimatedFlame:visible"]
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6rybt"]
-graph_offset = Vector2(47.04, -3.33786e-06)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_m1xrm")
-nodes/Animation/position = Vector2(310, 60)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ca6j0")
-"nodes/Animation 2/position" = Vector2(340, 190)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_78bjd")
-nodes/OneShot/position = Vector2(580, 40)
-nodes/output/position = Vector2(800, 120)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01hw3"]
-animation = &"enemy_raid"
+graph_offset = Vector2(-22.08, 4.8)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_28gxq")
+nodes/Add2/position = Vector2(490, 40)
+nodes/output/position = Vector2(660, 30)
+nodes/reset/node = SubResource("AnimationNodeAnimation_ca6j0")
+nodes/reset/position = Vector2(310, 210)
+nodes/ship_idle/node = SubResource("AnimationNodeAnimation_m1xrm")
+nodes/ship_idle/position = Vector2(310, 60)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"ship_idle", &"Add2", 1, &"reset"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7p4l0"]
 animation = &"ship_scan"
@@ -496,17 +400,17 @@ xfade_time = 0.5
 xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kbs0f"]
-states/Idle/node = SubResource("AnimationNodeBlendTree_6rybt")
-states/Idle/position = Vector2(139.441, 161.484)
 states/Start/position = Vector2(-51, 100.5)
 states/enemy_raid/node = SubResource("AnimationNodeAnimation_01hw3")
 states/enemy_raid/position = Vector2(236.125, 45)
+states/ship_idle/node = SubResource("AnimationNodeBlendTree_6rybt")
+states/ship_idle/position = Vector2(139.441, 161.484)
 states/ship_scan/node = SubResource("AnimationNodeAnimation_7p4l0")
 states/ship_scan/position = Vector2(409.5, 80.5)
 states/ship_travel/node = SubResource("AnimationNodeAnimation_sr7qb")
 states/ship_travel/position = Vector2(444.5, 163.5)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fu6cg"), "Idle", "enemy_raid", SubResource("AnimationNodeStateMachineTransition_r54fw"), "enemy_raid", "Idle", SubResource("AnimationNodeStateMachineTransition_sd24v"), "Idle", "ship_scan", SubResource("AnimationNodeStateMachineTransition_qgbav"), "ship_scan", "Idle", SubResource("AnimationNodeStateMachineTransition_uji04"), "Idle", "ship_travel", SubResource("AnimationNodeStateMachineTransition_g28qq"), "ship_travel", "Idle", SubResource("AnimationNodeStateMachineTransition_yc0tq")]
-graph_offset = Vector2(-396.059, 24.9675)
+transitions = ["Start", "ship_idle", SubResource("AnimationNodeStateMachineTransition_fu6cg"), "ship_idle", "enemy_raid", SubResource("AnimationNodeStateMachineTransition_r54fw"), "enemy_raid", "ship_idle", SubResource("AnimationNodeStateMachineTransition_sd24v"), "ship_idle", "ship_scan", SubResource("AnimationNodeStateMachineTransition_qgbav"), "ship_scan", "ship_idle", SubResource("AnimationNodeStateMachineTransition_uji04"), "ship_idle", "ship_travel", SubResource("AnimationNodeStateMachineTransition_g28qq"), "ship_travel", "ship_idle", SubResource("AnimationNodeStateMachineTransition_yc0tq")]
+graph_offset = Vector2(-142.484, 11.625)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m7dg0"]
 animations = [{
@@ -675,9 +579,7 @@ blend_times = [&"ship_idle", &"ship_travel", 1.0]
 tree_root = SubResource("AnimationNodeStateMachine_kbs0f")
 anim_player = NodePath("../ShipAnimations")
 active = true
-parameters/Idle/OneShot/active = false
-parameters/Idle/OneShot/internal_active = false
-parameters/Idle/OneShot/request = 0
+parameters/ship_idle/Add2/add_amount = 0
 script = ExtResource("4_d4801")
 
 [node name="RaidShip" type="AnimatedSprite2D" parent="."]

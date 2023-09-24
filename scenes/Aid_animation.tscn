@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qe6pgpt5c7yj"]
+[gd_scene load_steps=7 format=3 uid="uid://bkc16r0pceib7"]
 
 [ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_o7mmc"]
 [ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_okasw"]
