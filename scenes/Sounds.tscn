@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dpy7xphxw21k1" path="res://SoundFX/found_loot.mp3" id="7_4suii"]
 [ext_resource type="AudioStream" uid="uid://dbw6vedkoncg0" path="res://SoundFX/no_loot.mp3" id="8_sdxl2"]
 [ext_resource type="AudioStream" uid="uid://vdaoooso3bsy" path="res://SoundFX/Travel.mp3" id="9_2at2p"]
-[ext_resource type="AudioStream" uid="uid://j5y1qefmxawk" path="res://SoundFX/RaidShip.mp3" id="10_nx1r0"]
+[ext_resource type="AudioStream" uid="uid://c21vmda7y6g61" path="res://SoundFX/RaidShipFX.mp3" id="10_qh6b3"]
 [ext_resource type="AudioStream" uid="uid://b4hi75glvfpe7" path="res://SoundFX/AidShip.mp3" id="11_5vxf7"]
 
 [node name="Sounds" type="Node"]
@@ -46,7 +46,7 @@ stream = ExtResource("9_2at2p")
 volume_db = -10.0
 
 [node name="RaidShipFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_nx1r0")
+stream = ExtResource("10_qh6b3")
 
 [node name="AidShipFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_5vxf7")
