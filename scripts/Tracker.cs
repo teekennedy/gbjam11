@@ -36,6 +36,7 @@ public partial class Tracker : Control
     private int DistanceOG;
     private int Sanity;
     public int ShipHPOG; //keep this public for the random event
+    private int SanityOG;
 
     // Button status used by SFR_Script to keep track of which button should be active.
     [Export] public string ButtonStat = "Search";
@@ -61,8 +62,13 @@ public partial class Tracker : Control
 
     // Node for the Monster Ending Scene
     private PackedScene _End_Monster;
+    // Node for the space station ending
+    private PackedScene _End_SpaceStation;
+    // Node for the planet ending
+    private PackedScene _End_Planet;
 
     private AudioStreamPlayer _BG_Music;
+    private AudioStreamPlayer _TravelFX;
 
     // Event handler for when a button is pressed.
     public void OnButtonPressed(string node)
@@ -125,6 +131,7 @@ public partial class Tracker : Control
         ShipHPOG = ShipHP;
         DistanceOG = Distance;
         Sanity = 50; //set to 50 by default
+        SanityOG = Sanity;
 
         // Get the main Game node.
         _GameNode = GetNode("/root/Main/SubViewportContainer/GBScreen/Game");
@@ -138,9 +145,12 @@ public partial class Tracker : Control
         _TitleScene = GD.Load<PackedScene>("res://scenes/title_screen.tscn");
         _CreditsScene = GD.Load<PackedScene>("res://scenes/credits.tscn");
         _End_Monster = GD.Load<PackedScene>("res://scenes/End_Monster.tscn");
+        _End_SpaceStation = GD.Load<PackedScene>("res://scenes/End_SpaceStation.tscn");
+        _End_Planet = GD.Load<PackedScene>("res://scenes/End_Planet.tscn");
 
         //set bg music
         _BG_Music = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/ThinkMusic");
+        _TravelFX = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/Travel");
     }
 
     // Helper method to change the current UI action to a different scene
@@ -186,6 +196,7 @@ public partial class Tracker : Control
     public void OnGameOver(string reason)
     {
         SetUIAction(_GameOverScene);
+        _TravelFX.Stop();
         _BG_Music.Stop();
         var GO_Text = _ActionNode.GetNode<Label>("%GO_Text");
         GO_Text.Text += "\n" + reason;
@@ -242,9 +253,15 @@ public partial class Tracker : Control
         }
 
         SignalActionStarted(ActionType.Idle);
+        //Stop travel FX
+        _TravelFX?.Stop();
 
         //if bg music is not playing make sure it starts playing again
         if (!_BG_Music.Playing) { _BG_Music.Play(); }
+
+        //change music speed based on sanity
+        if (Sanity >= 50) { _BG_Music.PitchScale = 1; }
+        else { _BG_Music.PitchScale = Sanity / 100f * 2f; } //changes pitch based on sanity
 
         SetUIAction(_MenuScene);
     }
@@ -284,7 +301,7 @@ public partial class Tracker : Control
           //..then nothing is found
             GD.Print("Nothing Was Found");
 
-            //Play fixing sound sound
+            //Play NoLoot sound
             var LootSound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/NoLoot");
             LootSound?.Play();
             _BG_Music.Stop();
@@ -297,7 +314,7 @@ public partial class Tracker : Control
           //..then loot is found
             GD.Print("Loot Found!");
 
-            //Play fixing sound sound
+            //Play Loot sound
             var LootSound = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/LootFound");
             LootSound?.Play();
             _BG_Music.Stop();
@@ -381,6 +398,8 @@ public partial class Tracker : Control
     public async void OnTravelAction()
     {
         SignalActionStarted(ActionType.Travel);
+        //Play travel FX
+        _TravelFX?.Play();
         if (Distance == 30) //set to 30 for testing, change later if it should be longer
         { //if the player reaches the end..
 
@@ -394,12 +413,14 @@ public partial class Tracker : Control
             if (Sanity > 30 && Sanity < 70)
             { //if sanity is BETWEEN 30 and 70..
                 GD.Print("MID END // Space Station Ending");
+                SetUIAction(_End_SpaceStation);
                 //play the Space Station ending
             }
 
             if (Sanity > 70)
             { //if sanity is MORE THAN 70..
                 GD.Print("GOOD END // Planet Ending");
+                SetUIAction(_End_Planet);
                 //play the Planet ending
             }
         }
@@ -425,6 +446,7 @@ public partial class Tracker : Control
             GD.Print("Ship HP " + ShipHP);
             GD.Print("Distance traveled " + Distance);
             GD.Print("Velocity ", Velocity);
+            GD.Print("Sanity " + Sanity + "/100");
 
             var FixChance = GD.RandRange(0, 11); ; //random number between 1 and 10 as the chance to fix broken ship
 
@@ -452,6 +474,9 @@ public partial class Tracker : Control
         Scrap = ScrapOG;
         ShipHP = ShipHPOG;
         Distance = DistanceOG;
+        Sanity = SanityOG;
+
+        _BG_Music.PitchScale = 1;
 
         SetUIAction(_MenuScene); //instead of reloading the whole scene we will just change menus back to default
         _BG_Music.Play();
@@ -601,6 +626,10 @@ public partial class Tracker : Control
                 // start animation of a raid ship
                 SignalActionStarted(ActionType.Raided);
 
+                //Play Raid sound
+                var RaidFX = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/RaidShipFX");
+                RaidFX?.Play();
+
                 await ShowMessage("Oh No! A Raid Ship!"); //change text
 
                 _scrap = GD.RandRange(1, 4); //random number between 1 and 4
@@ -611,7 +640,7 @@ public partial class Tracker : Control
                 Food -= _food; //remove from ship inventory
                 Fuel -= _fuel; //remove from ship inventory
                 ShipHP -= 1; //remove 1 from the ship's hp
-                Sanity -= 5; //remove 5 from sanity
+                Sanity -= 2; //remove 5 from sanity
 
                 await ShowMessage("Lost " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
 
@@ -624,6 +653,10 @@ public partial class Tracker : Control
 
                 //animation of a helpful ship
 
+                //Play Aid sound
+                var AidFX = GetNodeOrNull<AudioStreamPlayer>("/root/Sounds/AidShipFX");
+                AidFX?.Play();
+
                 _scrap = GD.RandRange(2, 4); //random number between 2 and 4
                 _food = GD.RandRange(2, 4); //random number between 2 and 4
                 _fuel = GD.RandRange(2, 4); //random number between 2 and 4
@@ -631,7 +664,7 @@ public partial class Tracker : Control
                 Scrap += _scrap; //add to ship inventory
                 Food += _food; //add to ship inventory
                 Fuel += _fuel; //add to ship inventory
-                Sanity += 5; //add 5 to sanity
+                Sanity += 2; //add 5 to sanity
 
                 await ShowMessage("Gained " + _scrap + " scrap, " + _food + " food and " + _fuel + " fuel!"); //change text
 
@@ -707,7 +740,7 @@ public partial class Tracker : Control
 
                 _hp = GD.RandRange(2, 4); //random number between 2 and 4
                 ShipHP -= _hp; //remove ship health
-                Sanity -= 5; //remove 5 from sanity
+                Sanity -= 2; //remove 2 from sanity
                 break;
         }
     }

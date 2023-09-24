@@ -1,9 +1,114 @@
-[gd_scene format=3 uid="uid://be17iea8m6dp7"]
+[gd_scene load_steps=8 format=3 uid="uid://be17iea8m6dp7"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_m48te"]
+[ext_resource type="Texture2D" uid="uid://b3idt1uy0jc3q" path="res://assets/sprites/planet.png" id="2_tnrht"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="3_ecvbo"]
+[ext_resource type="AudioStream" uid="uid://cc1jjbe2qsqaq" path="res://SoundFX/End_Mid.mp3" id="4_ityw2"]
+
+[sub_resource type="Animation" id="Animation_xgq3s"]
+resource_name = "Finding_Planet"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 3.4, 4.5, 5.4, 6.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(44, 48), Vector2(44, 48), Vector2(66.5, 39.5), Vector2(113, 20), Vector2(127, 14), Vector2(135, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(198, 36), Vector2(117, 36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ship2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5, 3.4, 4.5, 5.4, 6.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.859375, 0.859375), Vector2(0.476563, 0.476563), Vector2(0.160156, 0.160156), Vector2(0.0332032, 0.0332032)]
+}
+
+[sub_resource type="Animation" id="Animation_rptav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Planet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(198, 36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ship2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ship2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nccuk"]
+_data = {
+"Finding_Planet": SubResource("Animation_xgq3s"),
+"RESET": SubResource("Animation_rptav")
+}
+
+[node name="End_Planet" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_m48te")]
+
+[node name="Planet" type="Sprite2D" parent="."]
+position = Vector2(198, 36)
+texture = ExtResource("2_tnrht")
+
+[node name="Ship2" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(80, 48)
+texture = ExtResource("3_ecvbo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Finding_Planet"
+libraries = {
+"": SubResource("AnimationLibrary_nccuk")
+}
+
+[node name="MidEndFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ityw2")
+autoplay = true
