@@ -627,6 +627,7 @@ stream = ExtResource("44_y8rgf")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-40, -1)
 sprite_frames = SubResource("SpriteFrames_5ax2t")
+autoplay = "default"
 frame_progress = 0.859866
 
 [node name="ShipAnimations" type="AnimationPlayer" parent="PlayerShip"]
@@ -648,7 +649,6 @@ visible = false
 position = Vector2(225, 48)
 sprite_frames = SubResource("SpriteFrames_m7dg0")
 autoplay = "default"
-speed_scale = 0.0
 offset = Vector2(-28, 2.08165e-12)
 
 [node name="DayTracker" parent="." instance=ExtResource("4_jy86q")]
