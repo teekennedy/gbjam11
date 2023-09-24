@@ -1,9 +1,155 @@
-[gd_scene format=3 uid="uid://6vgy7366eo6y"]
+[gd_scene load_steps=28 format=3 uid="uid://6vgy7366eo6y"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_dautb"]
+[ext_resource type="Texture2D" uid="uid://c7ojx7entfpso" path="res://assets/sprites/Monster/MonsterP1-1.png" id="2_8nt8t"]
+[ext_resource type="Texture2D" uid="uid://bw6xmotpbkdvm" path="res://assets/sprites/Monster/MonsterP1-2.png" id="3_uq3pp"]
+[ext_resource type="Texture2D" uid="uid://r4rj8cjd1mxt" path="res://assets/sprites/Monster/MonsterP1-3.png" id="4_ntck7"]
+[ext_resource type="Texture2D" uid="uid://cjuaymsgrge8q" path="res://assets/sprites/Monster/MonsterP1-4.png" id="5_r6s7i"]
+[ext_resource type="Texture2D" uid="uid://f118kc5c5amq" path="res://assets/sprites/Monster/MonsterP1-5.png" id="6_jrh2n"]
+[ext_resource type="Texture2D" uid="uid://ckfs11vvn1dyd" path="res://assets/sprites/Monster/MonsterP1-6.png" id="7_7fgyg"]
+[ext_resource type="Texture2D" uid="uid://clx00mm5oa4ml" path="res://assets/sprites/Monster/MonsterP1-7.png" id="8_ij0pe"]
+[ext_resource type="Texture2D" uid="uid://xej4qmjh1xxi" path="res://assets/sprites/Monster/MonsterP1-8.png" id="9_pthcc"]
+[ext_resource type="Texture2D" uid="uid://bqivd1syn24rm" path="res://assets/sprites/Monster/MonsterP1-9.png" id="10_52x3t"]
+[ext_resource type="Texture2D" uid="uid://g4b1nn233lwi" path="res://assets/sprites/Monster/MonsterP1-10.png" id="11_gbq62"]
+[ext_resource type="Texture2D" uid="uid://c80gux88l7hu" path="res://assets/sprites/Monster/MonsterP1-11.png" id="12_7oxo8"]
+[ext_resource type="Texture2D" uid="uid://cqsv23bsu14lr" path="res://assets/sprites/Monster/MonsterP1-12.png" id="13_k52x1"]
+[ext_resource type="Texture2D" uid="uid://blf8bny8f1dij" path="res://assets/sprites/Monster/MonsterP1-13.png" id="14_cc588"]
+[ext_resource type="Texture2D" uid="uid://dlc5u2wmgea8f" path="res://assets/sprites/Monster/MonsterP1-14.png" id="15_x1mwa"]
+[ext_resource type="Texture2D" uid="uid://x17byybo6ec0" path="res://assets/sprites/Monster/MonsterP1-15.png" id="16_y6rgh"]
+[ext_resource type="Texture2D" uid="uid://bhcq4vsrfsduy" path="res://assets/sprites/Monster/MonsterP1-16.png" id="17_xggju"]
+[ext_resource type="Texture2D" uid="uid://651vivoyd6q7" path="res://assets/sprites/Monster/MonsterP1-17.png" id="18_kkof3"]
+[ext_resource type="Texture2D" uid="uid://84bymgk7cf51" path="res://assets/sprites/Monster/MonsterP1-18.png" id="19_483g7"]
+[ext_resource type="Texture2D" uid="uid://c3d860jtdvsxl" path="res://assets/sprites/Monster/MonsterP1-19.png" id="20_1i4ve"]
+[ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="21_g5jfx"]
+[ext_resource type="Texture2D" uid="uid://brfligvxeky5d" path="res://assets/sprites/Monster/MonsterOpenMouth.png" id="22_ya0rd"]
+[ext_resource type="AudioStream" uid="uid://rfrlip8nb7fr" path="res://SoundFX/End_Bad.mp3" id="23_cm6of"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_seh3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8nt8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uq3pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ntck7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r6s7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jrh2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7fgyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ij0pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pthcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_52x3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gbq62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7oxo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_k52x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cc588")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x1mwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_y6rgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xggju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_kkof3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_483g7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_1i4ve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_7u7y5"]
+resource_name = "Monster_eats_you"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_i6k3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rl8hg"]
+_data = {
+"Monster_eats_you": SubResource("Animation_7u7y5"),
+"RESET": SubResource("Animation_i6k3y")
+}
+
+[node name="End_Monster" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_dautb")]
+
+[node name="Monster_P1" type="AnimatedSprite2D" parent="."]
+position = Vector2(119, -35)
+sprite_frames = SubResource("SpriteFrames_seh3m")
+metadata/_edit_group_ = true
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(80, 48)
+texture = ExtResource("21_g5jfx")
+
+[node name="MonsterOpenMouth" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(119, -35)
+texture = ExtResource("22_ya0rd")
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rl8hg")
+}
+
+[node name="BadEndFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_cm6of")
+autoplay = true

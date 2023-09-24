@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bdfi84fqqvkd3"]
+[gd_scene load_steps=2 format=3 uid="uid://bdfi84fqqvkd3"]
+
+[ext_resource type="AudioStream" uid="uid://cdxxatewm031o" path="res://SoundFX/End_Good.mp3" id="1_wlo8p"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="EndGoodFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wlo8p")
+autoplay = true
