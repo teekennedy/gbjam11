@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://dwgkdcg6h5cld"]
+[gd_scene load_steps=21 format=3 uid="uid://dwgkdcg6h5cld"]
 
 [ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="1_jrb5e"]
 [ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="2_oqjca"]
-[ext_resource type="Texture2D" uid="uid://5rr51ykgoe44" path="res://assets/sprites/Raid_ship.png" id="3_oalo7"]
 [ext_resource type="Texture2D" uid="uid://dty7g6me308i5" path="res://assets/sprites/Raid_ship_shot/RSS_14.png" id="4_pjwlw"]
 [ext_resource type="Texture2D" uid="uid://dm1j5br4pmqoq" path="res://assets/sprites/Raid_ship_shot/RSS_1.png" id="5_ds078"]
 [ext_resource type="Texture2D" uid="uid://cafal4u56ebmu" path="res://assets/sprites/Raid_ship_shot/RSS_2.png" id="6_aoddt"]
@@ -17,6 +16,103 @@
 [ext_resource type="Texture2D" uid="uid://xte1ju4wgfiu" path="res://assets/sprites/Raid_ship_shot/RSS_11.png" id="15_eladl"]
 [ext_resource type="Texture2D" uid="uid://chivaxrlvooww" path="res://assets/sprites/Raid_ship_shot/RSS_12.png" id="16_6ed0r"]
 [ext_resource type="Texture2D" uid="uid://c8csqy2h7edr8" path="res://assets/sprites/Raid_ship_shot/RSS_13.png" id="17_hy3yn"]
+
+[sub_resource type="Animation" id="Animation_goj55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(197, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RaidShip:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, 125)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RaidShip:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_skaxv"]
+resource_name = "enemy_interact"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2, 3.2, 3.3, 3.4, 4.7, 4.8, 4.9, 5.2, 6.3, 7.5, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(50, 48), Vector2(50, 48), Vector2(49, 48), Vector2(50, 48), Vector2(50, 48), Vector2(49, 48), Vector2(50, 48), Vector2(50, 48), Vector2(34, 48), Vector2(34, 48), Vector2(84, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RaidShip:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.2, 6.3, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(225, 48), Vector2(113, 48), Vector2(113, 48), Vector2(-30, 144)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RaidShip:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 1.0, 2.08165e-12]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RaidShip:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.2, 6.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.523599]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk6ty"]
+_data = {
+"RESET": SubResource("Animation_goj55"),
+"enemy_interact": SubResource("Animation_skaxv")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_40u4h"]
 animations = [{
@@ -71,202 +167,23 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Animation" id="Animation_goj55"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Ship2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 48)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(197, 53)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../RaidShipShooting:speed_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../RaidShipShooting:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_ri661"]
-resource_name = "enemy_leave"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Ship2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(50, 48), Vector2(42, 48), Vector2(42, 48), Vector2(80, 48)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(115, 48), Vector2(45, 174)]
-}
-
-[sub_resource type="Animation" id="Animation_w4mvy"]
-resource_name = "enemy_pew_pew"
-
-[sub_resource type="Animation" id="Animation_skaxv"]
-resource_name = "enemy_interact"
-length = 9.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Ship2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.2, 5.5, 6, 6.5, 8.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(80, 48), Vector2(50, 48), Vector2(50, 48), Vector2(42, 48), Vector2(42, 48), Vector2(80, 48)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.2, 5.4944, 9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(197, 48), Vector2(115, 48), Vector2(115, 48), Vector2(45, 174)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../RaidShipShooting:speed_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.2, 5.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_q1a07"]
-resource_name = "pewpew"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../RaidShipShooting:speed_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../RaidShipShooting:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk6ty"]
-_data = {
-"RESET": SubResource("Animation_goj55"),
-"enemy_interact": SubResource("Animation_skaxv"),
-"enemy_leave": SubResource("Animation_ri661"),
-"enemy_pew_pew": SubResource("Animation_w4mvy"),
-"pewpew": SubResource("Animation_q1a07")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2fvvj"]
-animation = &"enemy_approach"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1oqg"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t01fv"]
-states/enemy_approach/node = SubResource("AnimationNodeAnimation_2fvvj")
-states/enemy_approach/position = Vector2(392.5, 102.25)
-transitions = ["Start", "enemy_approach", SubResource("AnimationNodeStateMachineTransition_u1oqg")]
-
-[node name="emeny" type="Node2D"]
+[node name="Raided" type="Node2D"]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_jrb5e")]
 
-[node name="Ship2" type="Sprite2D" parent="."]
-position = Vector2(80, 48)
+[node name="PlayerShip" type="Sprite2D" parent="."]
+position = Vector2(197, 53)
 texture = ExtResource("2_oqjca")
 
-[node name="RaidShipShooting" type="AnimatedSprite2D" parent="."]
-position = Vector2(89, 48)
-sprite_frames = SubResource("SpriteFrames_40u4h")
-autoplay = "default"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RaidShipShooting"]
-root_node = NodePath("../../RaidShip")
-autoplay = "pewpew"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerShip"]
 playback_process_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_tk6ty")
 }
 
-[node name="RaidShip" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(197, 53)
-texture = ExtResource("3_oalo7")
-
-[node name="AnimationTree" type="AnimationTree" parent="RaidShip"]
-tree_root = SubResource("AnimationNodeStateMachine_t01fv")
-anim_player = NodePath("../../RaidShipShooting/AnimationPlayer")
+[node name="RaidShip" type="AnimatedSprite2D" parent="."]
+position = Vector2(-41, 125)
+sprite_frames = SubResource("SpriteFrames_40u4h")
+autoplay = "default"
+speed_scale = 0.0
+offset = Vector2(-28, 2.08165e-12)

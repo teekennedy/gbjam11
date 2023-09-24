@@ -1,9 +1,217 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ljocim3bdec"]
+[gd_scene load_steps=29 format=3 uid="uid://5ljocim3bdec"]
 
 [ext_resource type="Theme" uid="uid://dmkcxaefk848f" path="res://ui/ui_theme.tres" id="1_ianr6"]
 [ext_resource type="PackedScene" uid="uid://cjbf4jxwtqos1" path="res://scenes/parallax_background.tscn" id="2_21jju"]
 [ext_resource type="Texture2D" uid="uid://c3sm57xe8pll4" path="res://assets/sprites/Ship_2_fix.png" id="3_8tpsq"]
+[ext_resource type="Script" path="res://scripts/ShipAnimationTree.cs" id="4_d4801"]
+[ext_resource type="Texture2D" uid="uid://dty7g6me308i5" path="res://assets/sprites/Raid_ship_shot/RSS_14.png" id="4_j5muk"]
 [ext_resource type="PackedScene" uid="uid://ub0cy8e8psmi" path="res://scenes/DayTracker.tscn" id="4_jy86q"]
+[ext_resource type="Texture2D" uid="uid://dm1j5br4pmqoq" path="res://assets/sprites/Raid_ship_shot/RSS_1.png" id="5_n73qn"]
+[ext_resource type="Texture2D" uid="uid://cafal4u56ebmu" path="res://assets/sprites/Raid_ship_shot/RSS_2.png" id="6_g5jf6"]
+[ext_resource type="Texture2D" uid="uid://dcdw14wxqbdvb" path="res://assets/sprites/Raid_ship_shot/RSS_3.png" id="7_l5aq1"]
+[ext_resource type="Texture2D" uid="uid://dbwgcyo2mvcvk" path="res://assets/sprites/Raid_ship_shot/RSS_4.png" id="8_cebr2"]
+[ext_resource type="Texture2D" uid="uid://1peyuycuufgq" path="res://assets/sprites/Raid_ship_shot/RSS_5.png" id="9_mtu5e"]
+[ext_resource type="Texture2D" uid="uid://0d4ovn0x0tkd" path="res://assets/sprites/Raid_ship_shot/RSS_6.png" id="10_aadj0"]
+[ext_resource type="Texture2D" uid="uid://b7xg3wi7ktn5w" path="res://assets/sprites/Raid_ship_shot/RSS_7.png" id="11_wqoxe"]
+[ext_resource type="Texture2D" uid="uid://135jxgtryhck" path="res://assets/sprites/Raid_ship_shot/RSS_8.png" id="12_5v0vw"]
+[ext_resource type="Texture2D" uid="uid://cwei1o3jcmv8a" path="res://assets/sprites/Raid_ship_shot/RSS_9.png" id="13_3adq4"]
+[ext_resource type="Texture2D" uid="uid://ctuxs5uumlvao" path="res://assets/sprites/Raid_ship_shot/RSS_10.png" id="14_8hnfm"]
+[ext_resource type="Texture2D" uid="uid://xte1ju4wgfiu" path="res://assets/sprites/Raid_ship_shot/RSS_11.png" id="15_ll2sk"]
+[ext_resource type="Texture2D" uid="uid://chivaxrlvooww" path="res://assets/sprites/Raid_ship_shot/RSS_12.png" id="16_vrmb7"]
+[ext_resource type="Texture2D" uid="uid://c8csqy2h7edr8" path="res://assets/sprites/Raid_ship_shot/RSS_13.png" id="17_05cfx"]
+
+[sub_resource type="Animation" id="Animation_goj55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RaidShip:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RaidShip:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RaidShip:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_skaxv"]
+resource_name = "enemy_raid"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2, 3.2, 3.3, 3.4, 4.7, 4.8, 4.9, 5.2, 6.3, 7.5, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 48), Vector2(50, 48), Vector2(50, 48), Vector2(49, 48), Vector2(50, 48), Vector2(50, 48), Vector2(49, 48), Vector2(50, 48), Vector2(50, 48), Vector2(34, 48), Vector2(34, 48), Vector2(84, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RaidShip:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.2, 6.3, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(225, 48), Vector2(113, 48), Vector2(113, 48), Vector2(-30, 144)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RaidShip:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 1.0, 2.08165e-12]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RaidShip:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.2, 6.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.523599]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RaidShip:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk6ty"]
+_data = {
+"RESET": SubResource("Animation_goj55"),
+"enemy_raid": SubResource("Animation_skaxv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwjee"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01hw3"]
+animation = &"enemy_raid"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g2tt4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3gsd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kbs0f"]
+states/RESET/node = SubResource("AnimationNodeAnimation_xwjee")
+states/RESET/position = Vector2(501.5, 86)
+states/enemy_raid/node = SubResource("AnimationNodeAnimation_01hw3")
+states/enemy_raid/position = Vector2(357.5, 53)
+transitions = ["Start", "enemy_raid", SubResource("AnimationNodeStateMachineTransition_g2tt4"), "enemy_raid", "RESET", SubResource("AnimationNodeStateMachineTransition_y3gsd")]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7dg0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j5muk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n73qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g5jf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l5aq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cebr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mtu5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aadj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wqoxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5v0vw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3adq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8hnfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ll2sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vrmb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_05cfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j5muk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -17,9 +225,29 @@ theme = ExtResource("1_ianr6")
 
 [node name="ParallaxStars" parent="." instance=ExtResource("2_21jju")]
 
-[node name="Ship_Sprite" type="Sprite2D" parent="."]
+[node name="PlayerShip" type="Sprite2D" parent="."]
 position = Vector2(80, 48)
 texture = ExtResource("3_8tpsq")
+
+[node name="ShipAnimations" type="AnimationPlayer" parent="PlayerShip"]
+playback_process_mode = 0
+libraries = {
+"": SubResource("AnimationLibrary_tk6ty")
+}
+
+[node name="ShipAnimationTree" type="AnimationTree" parent="PlayerShip"]
+tree_root = SubResource("AnimationNodeStateMachine_kbs0f")
+anim_player = NodePath("../ShipAnimations")
+active = true
+script = ExtResource("4_d4801")
+
+[node name="RaidShip" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(225, 48)
+sprite_frames = SubResource("SpriteFrames_m7dg0")
+autoplay = "default"
+speed_scale = 0.0
+offset = Vector2(-28, 2.08165e-12)
 
 [node name="DayTracker" parent="." instance=ExtResource("4_jy86q")]
 unique_name_in_owner = true

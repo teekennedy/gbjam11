@@ -17,6 +17,12 @@ public partial class Tracker : Control
     [Export] public int Distance = 0; //start at 0 as player has not moved any place yet
     [Export] public float Velocity = 3.0F; // Velocity is the current speed of the ship. It affects Distance and how quickly the stars move by in the background.
 
+    public enum ActionType
+    {
+        Raided,
+    }
+
+    [Signal] public delegate void ActionStartedEventHandler(int action);
 
     //ok, so it turns out that global nodes are for keeping var's the same through scenes, so when we want to reset them we need to keep the og value
     //I know this is kinda inefficient, but it works to keep this script global
@@ -98,6 +104,11 @@ public partial class Tracker : Control
                 GD.Print("Warning: unhandled button name ", node);
                 break;
         }
+    }
+
+    public void SignalActionStarted(ActionType action)
+    {
+        EmitSignal(SignalName.ActionStarted, (int)action);
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -578,9 +589,11 @@ public partial class Tracker : Control
             case 6: //1 = Raid
                     //AT LEAST 1 of EACH resource is removed from the ship inventory
                 GD.Print("Event = Raid");
-                await ShowMessage("Oh No! A Raid Ship!"); //change text
 
-                //animation of a raid ship
+                // start animation of a raid ship
+                SignalActionStarted(ActionType.Raided);
+
+                await ShowMessage("Oh No! A Raid Ship!"); //change text
 
                 _scrap = GD.RandRange(1, 4); //random number between 1 and 4
                 _food = GD.RandRange(1, 4); //random number between 1 and 4
